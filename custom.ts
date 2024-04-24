@@ -32,7 +32,7 @@ namespace SerialMaker {
 
 
     //% block
-    export function SendDisplay() {
+    export function SendDisplayOverSerial() {
         let Display_Grid = "";
         let Y_Pos = 0;
         let X_Pos = 0;
