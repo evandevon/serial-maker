@@ -19,9 +19,10 @@ namespace SerialMaker {
 
     // note that Caml casing yields lower case
     // block text with spaces
-    //% block="Average of $value measured $measurements times with $delay (ms) delay"|| icon="\uf080" 
-    export function Averaging(value: number, measurements: number, delay: number): number {
+    //% block="Average measurement of $value measured $measurements times in $time_range (ms) "|| icon="\uf080" 
+    export function Averaging(value: number, measurements: number, time_range: number): number {
         let average = 0
+        let delay = time_range / measurements
         for (let index = 0; index < measurements; index++) {
             average += value
             basic.pause(delay)
@@ -31,7 +32,7 @@ namespace SerialMaker {
     }
 
 
-    //% block
+    //% block="Update Live Display"
     export function SendDisplayOverSerial() {
         let Display_Grid = "";
         let Y_Pos = 0;
