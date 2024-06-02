@@ -1,8 +1,14 @@
 
 /**
-* Use this file to define custom functions and blocks.
+* TEST Use this file to define custom functions and blocks.
 * Read more at https://makecode.microbit.org/blocks/custom
 */
+enum Button_Sense_Choice {
+    Left,
+    Right,
+    Up,
+    Down
+}
 
 enum MyEnum {
     //% block="one"
@@ -53,6 +59,11 @@ namespace SerialMaker {
         serial.writeLine("DISPLAY," + Display_Grid);
         basic.pause(50);
         return;
+    }
+
+    //% block
+    export function turn(choice: Button_Sense_Choice) {
+
     }
 
 }

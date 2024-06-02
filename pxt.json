@@ -5,7 +5,9 @@
     "dependencies": {
         "core": "*",
         "radio": "*",
-        "microphone": "*"
+        "microphone": "*",
+        "Wait Until Custom Blocks": "github:teacherpinky/wait-until-blocks#v0.1.12",
+        "microbit-pxt-clicks": "github:bsiever/microbit-pxt-clicks#v0.2.2"
     },
     "files": [
         "main.blocks",
@@ -17,11 +19,11 @@
         "test.ts"
     ],
     "targetVersions": {
-        "target": "6.0.26",
+        "target": "6.0.28",
         "targetId": "microbit"
     },
     "supportedTargets": [
         "microbit"
     ],
-    "preferredEditor": "blocksprj"
+    "preferredEditor": "tsprj"
 }
