@@ -73,15 +73,27 @@ namespace SerialMaker {
     }
 
 
-    //% block="Mouse Position %Mouse_Direction to $pixel pixel"|| icon="\uf080" 
+    //% block="Set Mouse Position %Mouse_Direction to $pixel pixel"|| icon="\uf080" 
     export function mouse_position(mouse_direction: Mouse_Direction, pixel: number){
-        serial.writeLine("MOUSE_POS_," + mouse_direction + "," + pixel);
+        serial.writeLine("MOUSE_POS_" + mouse_direction + "," + pixel);
         return;
     }
 
-    //% block="Mouse Position %Mouse_Direction to $pixel pixel"|| icon="\uf080" 
+    //% block="Set Mouse Position to X:$pixel_x and Y:$pixel_y"|| icon="\uf080" 
     export function mouse_position_xy(pixel_x: number, pixel_y: number) {
         serial.writeLine("MOUSE_POS_XY," + pixel_x + "," + pixel_y);
+        return;
+    }
+
+    //% block="Set Mouse Position %Mouse_Direction Percent to $percent"|| icon="\uf080"
+    export function mouse_position_percent(mouse_direction: Mouse_Direction, percent: number) {
+        serial.writeLine("MOUSE_POS_%" + mouse_direction + "," + percent);
+        return;
+    }
+
+    //% block="Set Mouse Position Percent to X:$percent_x Y:$percent_y"|| icon="\uf080"
+    export function mouse_position_percent_xy(percent_x: number, percent_y: number) {
+        serial.writeLine("MOUSE_POS_%XY," + percent_x + "," + percent_y);
         return;
     }
 
