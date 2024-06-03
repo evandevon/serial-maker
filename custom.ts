@@ -4,10 +4,10 @@
 * Read more at https://makecode.microbit.org/blocks/custom
 */
 enum Direction_Words {
-    Left,
-    Right,
-    Up,
-    Down
+    "LEFT",
+    "RIGHT",
+    "UP",
+    "DOWN"
 }
 
 enum Mouse_Direction {
@@ -42,21 +42,21 @@ namespace SerialMaker {
         return average;
     }
 
-    //% block ="Mouse Move %Direction_Words 10 pixels"
+    //% block ="Mouse Move %Direction_Words 10 pixels"|| icon="\uf080"
     export function mouse_move_direction(choice: Direction_Words) {
         serial.writeLine("MOUSE_MOVE_" + choice);
         return;
     }
 
     //% block="Set Mouse Position %Mouse_Direction to $pixel pixel"|| icon="\uf080" 
-    export function mouse_position(direction: Mouse_Direction, pixel: number){
-        serial.writeLine("MOUSE_POS_," + direction + "," + pixel);
+    export function mouse_position(mouse_direction: Mouse_Direction, pixel: number){
+        serial.writeLine("MOUSE_POS_," + mouse_direction + "," + pixel);
         return;
     }
 
     //% block="Set Mouse Move %Mouse_Direction by $pixel pixel"|| icon="\uf080" 
-    export function mouse_move(direction: Mouse_Direction, pixel: number) {
-        serial.writeLine("MOUSE_MOVE_," + direction + "," + pixel);
+    export function mouse_move(mouse_direction: Mouse_Direction, pixel: number) {
+        serial.writeLine("MOUSE_MOVE_," + mouse_direction + "," + pixel);
         return;
     }
 

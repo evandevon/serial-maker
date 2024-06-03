@@ -1,13 +1,14 @@
-let average = 0
-input.onButtonPressed(Button.A, function () {
-	
-})
-control.onEvent(EventBusSource.MICROBIT_ID_BUTTON_A, EventBusValue.MICROBIT_BUTTON_EVT_DOWN, function () {
-	
-})
 basic.forever(function () {
-    for (let index = 0; index < 50; index++) {
-        average = input.acceleration(Dimension.X)
-        serial.writeLine("MOUSE_POS_%X," + average)
+    if (input.isGesture(Gesture.LogoUp)) {
+        SerialMaker.mouse_move_direction(Direction_Words.UP)
+    }
+    if (input.isGesture(Gesture.LogoDown)) {
+        SerialMaker.mouse_move_direction(Direction_Words.DOWN)
+    }
+    if (input.isGesture(Gesture.TiltLeft)) {
+        SerialMaker.mouse_move_direction(Direction_Words.LEFT)
+    }
+    if (input.isGesture(Gesture.TiltRight)) {
+        SerialMaker.mouse_move_direction(Direction_Words.RIGHT)
     }
 })
