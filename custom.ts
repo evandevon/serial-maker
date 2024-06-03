@@ -149,6 +149,20 @@ namespace SerialMaker {
         }
     }
 
+    //% blockNamespace="text"
+    //% block="join $text1"
+    //% blockCombine
+    //% inlineInputMode=inline
+    //% expandableArgumentMode="enabled"
+    function joinMultiple(text1: string, ...texts: string[]): string {
+        let result = text1;
+        for (let text of texts) {
+            result += text;
+        }
+        return result;
+    }
+    
+
 }
 
 

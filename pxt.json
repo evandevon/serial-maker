@@ -4,10 +4,9 @@
     "description": "",
     "dependencies": {
         "core": "*",
-        "radio": "*",
         "microphone": "*",
-        "Wait Until Custom Blocks": "github:teacherpinky/wait-until-blocks#v0.1.12",
-        "microbit-pxt-clicks": "github:bsiever/microbit-pxt-clicks#v0.2.2"
+        "microbit-pxt-clicks": "github:bsiever/microbit-pxt-clicks#v0.2.2",
+        "Andee": "github:annikken/pxt-andee#v1.0.5"
     },
     "files": [
         "main.blocks",
