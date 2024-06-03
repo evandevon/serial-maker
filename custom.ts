@@ -3,7 +3,7 @@
 * TEST Use this file to define custom functions and blocks.
 * Read more at https://makecode.microbit.org/blocks/custom
 */
-enum Button_Sense_Choice {
+enum Direction_Words {
     Left,
     Right,
     Up,
@@ -40,6 +40,12 @@ namespace SerialMaker {
         }
         average = average / measurements
         return average;
+    }
+
+    //% block ="Mouse Move %Direction_Words 10 pixels"
+    export function mouse_move_direction(choice: Direction_Words) {
+        serial.writeLine("MOUSE_MOVE_" + choice);
+        return;
     }
 
     //% block="Set Mouse Position %Mouse_Direction to $pixel pixel"|| icon="\uf080" 
@@ -82,10 +88,7 @@ namespace SerialMaker {
 
     }
 
-    //% block
-    export function turn(choice: Button_Sense_Choice) {
 
-    }
 
     /**
        * Wait until button is pressed
