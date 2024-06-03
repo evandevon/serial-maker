@@ -48,9 +48,13 @@ enum MyEnum {
 /**
  * Custom blocks
  */
+//% groups="['Mouse', 'Keyboard' , 'Graphs', 'Sound', 'Overlay', 'Requests', 'Files', ]"
 
 namespace SerialMaker {
 
+    /**
+    * Averages a value across selected time frame.
+    */
     // note that Caml casing yields lower case
     // block text with spaces
     //% block="Average measurement of $value measured $measurements times in $time_range (ms) "|| icon="\uf080" 
@@ -65,6 +69,7 @@ namespace SerialMaker {
         return average;
     }
 
+    //% group="Mouse Commands"
     //% color=#ff0f0f
     //% block="Mouse Move %choice 10 pixels" icon="\uf080"
     export function mouse_move_direction(choice: Direction_Words): void {
@@ -91,6 +96,7 @@ namespace SerialMaker {
         basic.pause(20)
     }
 
+    //% group="Mouse Commands"
     //% color=#ff0f0f
     //% block="Set Mouse Position %Mouse_Direction to $pixel pixel"|| icon="\uf080" color=#ff0f0f
     export function mouse_position(mouse_direction: Mouse_Direction, pixel: number){
@@ -98,6 +104,7 @@ namespace SerialMaker {
         return;
     }
 
+    //% group="Mouse Commands"
     //% color=#ff0f0f
     //% block="Set Mouse Position to X:$pixel_x and Y:$pixel_y"|| icon="\uf080" 
     export function mouse_position_xy(pixel_x: number, pixel_y: number) {
@@ -105,6 +112,7 @@ namespace SerialMaker {
         return;
     }
 
+    //% group="Mouse Commands"
     //% color=#ff0f0f
     //% block="Set Mouse Position %Mouse_Direction Percent to $percent"|| icon="\uf080"
     export function mouse_position_percent(mouse_direction: Mouse_Direction, percent: number) {
@@ -112,6 +120,7 @@ namespace SerialMaker {
         return;
     }
 
+    //% group="Mouse Commands"
     //% color=#ff0f0f
     //% block="Set Mouse Position Percent to X:$percent_x Y:$percent_y"|| icon="\uf080"
     export function mouse_position_percent_xy(percent_x: number, percent_y: number) {
@@ -119,6 +128,7 @@ namespace SerialMaker {
         return;
     }
 
+    //% group="Mouse Commands"
     //% color=#ff0f0f
     //% block="Mouse Move %Mouse_Direction by $pixel pixels"|| icon="\uf080" 
     export function mouse_move(mouse_direction: Mouse_Direction, pixel: number) {
@@ -126,6 +136,7 @@ namespace SerialMaker {
         return;
     }
 
+    //% group="Mouse Commands"
     //% color=#ff0f0f
     //% block="Mouse Move XY by X:$pixel_x Y:$pixel_y pixels"|| icon="\uf080" 
     export function mouse_move_xy(pixel_x: number, pixel_y: number) {
@@ -133,6 +144,7 @@ namespace SerialMaker {
         return;
     }
 
+    //% group="Mouse Commands"
     //% color=#ff0f0f
     //% block="Mouse button %Mouse_Buttons action %Mouse_Button_Actions" icon="\uf080"
     export function mouse_button_action(button_choice:Mouse_Buttons ,action_choice: Mouse_Button_Actions): void {
