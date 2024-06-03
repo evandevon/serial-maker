@@ -3,6 +3,11 @@
 * TEST Use this file to define custom functions and blocks.
 * Read more at https://makecode.microbit.org/blocks/custom
 */
+
+enum Keyboard_Keys {
+    
+}
+
 enum Direction_Words {
     //% block="LEFT"
     LEFT,
@@ -69,6 +74,39 @@ namespace SerialMaker {
         return average;
     }
 
+    /**
+    * Scrolls the mouse 1 row/column in the chosen direction.
+    */
+    //% group="Mouse Commands"
+    //% color=#ff0f0f
+    //% block="Mouse scroll %choice" icon="\uf080"
+    export function mouse_scroll_direction(choice: Direction_Words): void {
+        let directionString: string;
+
+        switch (choice) {
+            case Direction_Words.LEFT:
+                directionString = "LEFT";
+                break;
+            case Direction_Words.RIGHT:
+                directionString = "RIGHT";
+                break;
+            case Direction_Words.UP:
+                directionString = "UP";
+                break;
+            case Direction_Words.DOWN:
+                directionString = "DOWN";
+                break;
+            default:
+                directionString = "UP";
+        }
+
+        serial.writeLine("MOUSE_SCROLL," + directionString);
+        basic.pause(20)
+    }
+
+    /**
+    * Moves the mouse 10 pixels in the chosen direction.
+    */
     //% group="Mouse Commands"
     //% color=#ff0f0f
     //% block="Mouse Move %choice 10 pixels" icon="\uf080"
@@ -96,6 +134,9 @@ namespace SerialMaker {
         basic.pause(20)
     }
 
+    /**
+    * Sets the mouse position in the X or Y direction (0,0 is top left)
+    */
     //% group="Mouse Commands"
     //% color=#ff0f0f
     //% block="Set Mouse Position %Mouse_Direction to $pixel pixel"|| icon="\uf080" color=#ff0f0f
@@ -104,6 +145,9 @@ namespace SerialMaker {
         return;
     }
 
+    /**
+    * Sets the mouse position in the X and Y direction (0,0 is top left)
+    */
     //% group="Mouse Commands"
     //% color=#ff0f0f
     //% block="Set Mouse Position to X:$pixel_x and Y:$pixel_y"|| icon="\uf080" 
@@ -112,6 +156,9 @@ namespace SerialMaker {
         return;
     }
 
+    /**
+    * Sets the mouse position in the X or Y direction as a percentage (0,0 is top left and 100,100 is lower right)
+    */
     //% group="Mouse Commands"
     //% color=#ff0f0f
     //% block="Set Mouse Position %Mouse_Direction Percent to $percent"|| icon="\uf080"
@@ -120,6 +167,9 @@ namespace SerialMaker {
         return;
     }
 
+    /**
+    * Sets the mouse position in the X and Y direction as a percentage (0,0 is top left and 100,100 is lower right)
+    */
     //% group="Mouse Commands"
     //% color=#ff0f0f
     //% block="Set Mouse Position Percent to X:$percent_x Y:$percent_y"|| icon="\uf080"
@@ -128,6 +178,9 @@ namespace SerialMaker {
         return;
     }
 
+    /**
+    * Moves the mouse in the X or Y direction by the specified amount of pixels
+    */
     //% group="Mouse Commands"
     //% color=#ff0f0f
     //% block="Mouse Move %Mouse_Direction by $pixel pixels"|| icon="\uf080" 
@@ -136,6 +189,9 @@ namespace SerialMaker {
         return;
     }
 
+    /**
+    * Moves the mouse in the X and Y directions by the specified amounts of pixels
+    */
     //% group="Mouse Commands"
     //% color=#ff0f0f
     //% block="Mouse Move XY by X:$pixel_x Y:$pixel_y pixels"|| icon="\uf080" 
@@ -144,6 +200,9 @@ namespace SerialMaker {
         return;
     }
 
+    /**
+    * Clicks, Holds or Releases the mouse buttons
+    */
     //% group="Mouse Commands"
     //% color=#ff0f0f
     //% block="Mouse button %Mouse_Buttons action %Mouse_Button_Actions" icon="\uf080"
