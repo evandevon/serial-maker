@@ -92,7 +92,7 @@ namespace SerialMaker {
     }
 
     //% color=#ff0f0f
-    //% block="Set Mouse Position %Mouse_Direction to $pixel pixel"|| icon="\uf080" 
+    //% block="Set Mouse Position %Mouse_Direction to $pixel pixel"|| icon="\uf080" color=#ff0f0f
     export function mouse_position(mouse_direction: Mouse_Direction, pixel: number){
         serial.writeLine("MOUSE_POS_" + mouse_direction + "," + pixel);
         return;
@@ -170,7 +170,7 @@ namespace SerialMaker {
         basic.pause(20)
     }
 
-    //% color=#66ff33
+    //% color=#2db300
     //% block="Update Live Display"
     export function SendDisplayOverSerial() {
         let Display_Grid = "";
