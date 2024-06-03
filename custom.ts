@@ -14,6 +14,24 @@ enum Direction_Words {
     DOWN
 }
 
+enum Mouse_Buttons {
+    L,
+    M,
+    R,
+    All
+}
+
+enum Mouse_Button_Actions {
+    //% block="Click"
+    Click,
+    //% block="Release"
+    Release,
+    //% block="Hold"
+    Hold,
+    //% block="Double Click"
+    Double_Click
+}
+
 
 enum Mouse_Direction {
     X,
@@ -30,7 +48,7 @@ enum MyEnum {
 /**
  * Custom blocks
  */
-//% color="#AA278D" weight=100
+
 namespace SerialMaker {
 
     // note that Caml casing yields lower case
@@ -47,6 +65,7 @@ namespace SerialMaker {
         return average;
     }
 
+    //% color=#ff0f0f
     //% block="Mouse Move %choice 10 pixels" icon="\uf080"
     export function mouse_move_direction(choice: Direction_Words): void {
         let directionString: string;
@@ -72,43 +91,86 @@ namespace SerialMaker {
         basic.pause(20)
     }
 
-
+    //% color=#ff0f0f
     //% block="Set Mouse Position %Mouse_Direction to $pixel pixel"|| icon="\uf080" 
     export function mouse_position(mouse_direction: Mouse_Direction, pixel: number){
         serial.writeLine("MOUSE_POS_" + mouse_direction + "," + pixel);
         return;
     }
 
+    //% color=#ff0f0f
     //% block="Set Mouse Position to X:$pixel_x and Y:$pixel_y"|| icon="\uf080" 
     export function mouse_position_xy(pixel_x: number, pixel_y: number) {
         serial.writeLine("MOUSE_POS_XY," + pixel_x + "," + pixel_y);
         return;
     }
 
+    //% color=#ff0f0f
     //% block="Set Mouse Position %Mouse_Direction Percent to $percent"|| icon="\uf080"
     export function mouse_position_percent(mouse_direction: Mouse_Direction, percent: number) {
         serial.writeLine("MOUSE_POS_%" + mouse_direction + "," + percent);
         return;
     }
 
+    //% color=#ff0f0f
     //% block="Set Mouse Position Percent to X:$percent_x Y:$percent_y"|| icon="\uf080"
     export function mouse_position_percent_xy(percent_x: number, percent_y: number) {
         serial.writeLine("MOUSE_POS_%XY," + percent_x + "," + percent_y);
         return;
     }
 
+    //% color=#ff0f0f
     //% block="Mouse Move %Mouse_Direction by $pixel pixels"|| icon="\uf080" 
     export function mouse_move(mouse_direction: Mouse_Direction, pixel: number) {
         serial.writeLine("MOUSE_MOVE_," + mouse_direction + "," + pixel);
         return;
     }
 
+    //% color=#ff0f0f
     //% block="Mouse Move XY by X:$pixel_x Y:$pixel_y pixels"|| icon="\uf080" 
     export function mouse_move_xy(pixel_x: number, pixel_y: number) {
         serial.writeLine("MOUSE_MOVE_XY," + pixel_x + "," + pixel_y);
         return;
     }
 
+    //% color=#ff0f0f
+    //% block="Mouse button %Mouse_Buttons action %Mouse_Button_Actions" icon="\uf080"
+    export function mouse_button_action(button_choice:Mouse_Buttons ,action_choice: Mouse_Button_Actions): void {
+        let button_string: string;
+        let action_string: string;
+
+        switch (button_choice) {
+            case Mouse_Buttons.L:
+                button_string = "L";
+                break;
+            case Mouse_Buttons.M:
+                button_string = "M";
+                break;
+            case Mouse_Buttons.R:
+                button_string = "R";
+                break;
+            case Mouse_Buttons.All:
+                button_string = "ALL";
+                break;
+        }
+        switch (action_choice) {
+            case Mouse_Button_Actions.Click:
+                action_string = "CLICK";
+                break;
+            case Mouse_Button_Actions.Hold:
+                action_string = "HOLD";
+                break;
+            case Mouse_Button_Actions.Release:
+                action_string = "RELEASE";
+                break;
+
+        }
+
+        serial.writeLine("MOUSE_" + action_string + "," + button_string);
+        basic.pause(20)
+    }
+
+    //% color=#66ff33
     //% block="Update Live Display"
     export function SendDisplayOverSerial() {
         let Display_Grid = "";
