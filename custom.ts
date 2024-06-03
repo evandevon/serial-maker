@@ -5,7 +5,16 @@
 */
 
 enum Keyboard_Keys {
-    
+    A, B, C
+}
+
+enum Keyboard_Actions {
+    //% block="Tap"
+    Tap,
+    //% block="Release"
+    Release,
+    //% block="Hold"
+    Hold,
 }
 
 enum Direction_Words {
@@ -36,6 +45,7 @@ enum Mouse_Button_Actions {
     //% block="Double Click"
     Double_Click
 }
+
 
 
 enum Mouse_Direction {
@@ -77,7 +87,7 @@ namespace SerialMaker {
     /**
     * Scrolls the mouse 1 row/column in the chosen direction.
     */
-    //% group="Mouse Commands"
+    //% group="Mouse"
     //% color=#ff0f0f
     //% block="Mouse scroll %choice" icon="\uf080"
     export function mouse_scroll_direction(choice: Direction_Words): void {
@@ -107,7 +117,7 @@ namespace SerialMaker {
     /**
     * Moves the mouse 10 pixels in the chosen direction.
     */
-    //% group="Mouse Commands"
+    //% group="Mouse"
     //% color=#ff0f0f
     //% block="Mouse Move %choice 10 pixels" icon="\uf080"
     export function mouse_move_direction(choice: Direction_Words): void {
@@ -137,7 +147,7 @@ namespace SerialMaker {
     /**
     * Sets the mouse position in the X or Y direction (0,0 is top left)
     */
-    //% group="Mouse Commands"
+    //% group="Mouse"
     //% color=#ff0f0f
     //% block="Set Mouse Position %Mouse_Direction to $pixel pixel"|| icon="\uf080" color=#ff0f0f
     export function mouse_position(mouse_direction: Mouse_Direction, pixel: number){
@@ -148,7 +158,7 @@ namespace SerialMaker {
     /**
     * Sets the mouse position in the X and Y direction (0,0 is top left)
     */
-    //% group="Mouse Commands"
+    //% group="Mouse"
     //% color=#ff0f0f
     //% block="Set Mouse Position to X:$pixel_x and Y:$pixel_y"|| icon="\uf080" 
     export function mouse_position_xy(pixel_x: number, pixel_y: number) {
@@ -159,7 +169,7 @@ namespace SerialMaker {
     /**
     * Sets the mouse position in the X or Y direction as a percentage (0,0 is top left and 100,100 is lower right)
     */
-    //% group="Mouse Commands"
+    //% group="Mouse"
     //% color=#ff0f0f
     //% block="Set Mouse Position %Mouse_Direction Percent to $percent"|| icon="\uf080"
     export function mouse_position_percent(mouse_direction: Mouse_Direction, percent: number) {
@@ -170,7 +180,7 @@ namespace SerialMaker {
     /**
     * Sets the mouse position in the X and Y direction as a percentage (0,0 is top left and 100,100 is lower right)
     */
-    //% group="Mouse Commands"
+    //% group="Mouse"
     //% color=#ff0f0f
     //% block="Set Mouse Position Percent to X:$percent_x Y:$percent_y"|| icon="\uf080"
     export function mouse_position_percent_xy(percent_x: number, percent_y: number) {
@@ -181,7 +191,7 @@ namespace SerialMaker {
     /**
     * Moves the mouse in the X or Y direction by the specified amount of pixels
     */
-    //% group="Mouse Commands"
+    //% group="Mouse"
     //% color=#ff0f0f
     //% block="Mouse Move %Mouse_Direction by $pixel pixels"|| icon="\uf080" 
     export function mouse_move(mouse_direction: Mouse_Direction, pixel: number) {
@@ -192,7 +202,7 @@ namespace SerialMaker {
     /**
     * Moves the mouse in the X and Y directions by the specified amounts of pixels
     */
-    //% group="Mouse Commands"
+    //% group="Mouse"
     //% color=#ff0f0f
     //% block="Mouse Move XY by X:$pixel_x Y:$pixel_y pixels"|| icon="\uf080" 
     export function mouse_move_xy(pixel_x: number, pixel_y: number) {
@@ -203,7 +213,7 @@ namespace SerialMaker {
     /**
     * Clicks, Holds or Releases the mouse buttons
     */
-    //% group="Mouse Commands"
+    //% group="Mouse"
     //% color=#ff0f0f
     //% block="Mouse button %Mouse_Buttons action %Mouse_Button_Actions" icon="\uf080"
     export function mouse_button_action(button_choice:Mouse_Buttons ,action_choice: Mouse_Button_Actions): void {
@@ -240,6 +250,40 @@ namespace SerialMaker {
         serial.writeLine("MOUSE_" + action_string + "," + button_string);
         basic.pause(20)
     }
+
+    /**
+        * Clicks, Holds or Releases the keyboard buttons
+        */
+    //% group="Keyboard"
+    //% color=#1a53ff
+    //% block="Keyboard %Keyboard_Actions the %Keyboard_Keys key" icon="\uf080"
+    export function Keyboard(key_choice: Keyboard_Keys, action_choice: Keyboard_Actions): void {
+        let key_string: string;
+        let action_string: string;
+
+        switch (key_choice) {
+            case Keyboard_Keys.A:
+                key_string = "A";
+                break;
+
+        }
+        switch (action_choice) {
+            case Keyboard_Actions.Tap:
+                action_string = "TAP";
+                break;
+            case Keyboard_Actions.Hold:
+                action_string = "HOLD";
+                break;
+            case Keyboard_Actions.Release:
+                action_string = "RELEASE";
+                break;
+
+        }
+
+        serial.writeLine("KEY_" + action_string + "," + key_string);
+        basic.pause(20)
+    }
+
 
     //% color=#2db300
     //% block="Update Live Display"
