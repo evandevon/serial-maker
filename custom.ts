@@ -10,6 +10,11 @@ enum Button_Sense_Choice {
     Down
 }
 
+enum Mouse_Direction {
+    X,
+    Y
+}
+
 enum MyEnum {
     //% block="one"
     One,
@@ -37,6 +42,17 @@ namespace SerialMaker {
         return average;
     }
 
+    //% block="Set Mouse Position %Mouse_Direction to $pixel pixel"|| icon="\uf080" 
+    export function mouse_position(direction: Mouse_Direction, pixel: number){
+        serial.writeLine("MOUSE_POS_," + direction + "," + pixel);
+        return;
+    }
+
+    //% block="Set Mouse Move %Mouse_Direction by $pixel pixel"|| icon="\uf080" 
+    export function mouse_move(direction: Mouse_Direction, pixel: number) {
+        serial.writeLine("MOUSE_MOVE_," + direction + "," + pixel);
+        return;
+    }
 
     //% block="Update Live Display"
     export function SendDisplayOverSerial() {
@@ -62,7 +78,7 @@ namespace SerialMaker {
     }
 
     //% block="Test Block for %choice"
-    export function TestEnum(choice: MyEnum) {
+    export function test(choice: MyEnum) {
 
     }
 
