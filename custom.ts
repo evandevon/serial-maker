@@ -61,9 +61,48 @@ namespace SerialMaker {
         return;
     }
 
+    //% block="Test Block for %choice"
+    export function TestEnum(choice: MyEnum) {
+
+    }
+
     //% block
     export function turn(choice: Button_Sense_Choice) {
 
+    }
+
+    /**
+       * Wait until button is pressed
+       * @param button the button to wait for eg: Button.A
+       */
+    //% blockId=WaitUntilBlocks_wait_until_button_is_pressed
+    //% block="wait until button %button is pressed"
+    //% weight=100
+    //% jsdoc.loc.nl="Wacht tot een knop is ingedrukt."
+    //% button.loc.nl="De knop waar je op wacht, bijvoorbeeld knop A."
+    export function waitUntilButtonPressed(button: Button): void {
+        while (!input.buttonIsPressed(button)) {
+            basic.pause(20);
+        }
+    }
+
+    /**
+       * Wait until button is released
+       * @param button the button to wait for eg: Button.A
+       */
+    //% blockId=WaitUntilBlocks_wait_until_button_is_released
+    //% block="wait until button %button is released"
+    //% block.loc.de="warte bis Knopf %button losgelassen"
+    //% block.loc.sv-SE="vänta tills knapp %button släpps"
+    //% block.loc.fr="attendre jusqu'à ce que le bouton %button soit relaché"
+    //% block.loc.nl="wacht tot knop %button is losgelaten"
+    //% weight=95
+    //% jsdoc.loc.nl="Wacht tot een knop is losgelaten oftewel niet meer is ingedrukt."
+    //% button.loc.nl="De knop waar je op wacht, bijvoorbeeld knop A."
+    export function waitUntilButtonReleased(button: Button): void {
+        while (input.buttonIsPressed(button)) {
+            basic.pause(20);
+        }
     }
 
 }
