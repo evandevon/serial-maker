@@ -73,15 +73,27 @@ namespace SerialMaker {
     }
 
 
-    //% block="Set Mouse Position %Mouse_Direction to $pixel pixel"|| icon="\uf080" 
+    //% block="Mouse Position %Mouse_Direction to $pixel pixel"|| icon="\uf080" 
     export function mouse_position(mouse_direction: Mouse_Direction, pixel: number){
         serial.writeLine("MOUSE_POS_," + mouse_direction + "," + pixel);
         return;
     }
 
-    //% block="Set Mouse Move %Mouse_Direction by $pixel pixel"|| icon="\uf080" 
+    //% block="Mouse Position %Mouse_Direction to $pixel pixel"|| icon="\uf080" 
+    export function mouse_position_xy(pixel_x: number, pixel_y: number) {
+        serial.writeLine("MOUSE_POS_XY," + pixel_x + "," + pixel_y);
+        return;
+    }
+
+    //% block="Mouse Move %Mouse_Direction by $pixel pixels"|| icon="\uf080" 
     export function mouse_move(mouse_direction: Mouse_Direction, pixel: number) {
         serial.writeLine("MOUSE_MOVE_," + mouse_direction + "," + pixel);
+        return;
+    }
+
+    //% block="Mouse Move XY by X:$pixel_x Y:$pixel_y pixels"|| icon="\uf080" 
+    export function mouse_move_xy(pixel_x: number, pixel_y: number) {
+        serial.writeLine("MOUSE_MOVE_XY," + pixel_x + "," + pixel_y);
         return;
     }
 
@@ -147,19 +159,6 @@ namespace SerialMaker {
         while (input.buttonIsPressed(button)) {
             basic.pause(20);
         }
-    }
-
-    //% blockNamespace="text"
-    //% block="join $text1"
-    //% blockCombine
-    //% inlineInputMode=inline
-    //% expandableArgumentMode="enabled"
-    function joinMultiple(text1: string, ...texts: string[]): string {
-        let result = text1;
-        for (let text of texts) {
-            result += text;
-        }
-        return result;
     }
     
 
