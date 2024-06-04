@@ -5,24 +5,20 @@
 */
 
 enum Keyboard_Keys {
-    A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z,
-    
-    DOWN,UP,LEFT,RIGHT,
-    F1,F2,F3,F4,F5,F6,F7,F8,F9,F10,F11,F12,
-    PRINTSCREEN,ENTER,SPACE,DELETE,BACKSPACE,COPY,CUT,PASTE,
-    VOLUMEUP, VOLUMEDOWN, VOLUMEMUTE, PLAYPAUSE,
-    PAGEDOWN,PAGEUP,HOME,END,TAB,ESC,CTRL,ALT,SHIFT,WINDOWS,CAPSLOCK,
-    //%block ="1"
-    ONE
+    //% block="1"
+    ONE = "ONE",
+    //% block="2"
+    TWO = "TWO",
+
 }
 
 enum Keyboard_Actions {
-    //% block="Tap"
-    Tap,
-    //% block="Release"
-    Release,
-    //% block="Hold"
-    Hold
+    //% block="TAP"
+    TAP,
+    //% block="RELEASE"
+    RELEASE,
+    //% block="HOLD"
+    HOLD
 }
 
 enum Direction_Words {
@@ -44,14 +40,12 @@ enum Mouse_Buttons {
 }
 
 enum Mouse_Button_Actions {
-    //% block="Click"
-    Click,
-    //% block="Release"
-    Release,
-    //% block="Hold"
-    Hold,
-    //% block="Double Click"
-    Double_Click
+    //% block="CLICK"
+    CLICK,
+    //% block="RELEASE"
+    RELEASE,
+    //% block="HOLD"
+    HOLD,
 }
 
 
@@ -59,6 +53,14 @@ enum Mouse_Button_Actions {
 enum Mouse_Direction {
     X,
     Y
+}
+
+
+enum Say_Options{
+    "hello world",
+    SET_MALE_VOICE,
+    SET_FEMALE_VOICE,
+    STOP_SPEECH
 }
 
 enum MyEnum {
@@ -71,13 +73,26 @@ enum MyEnum {
 /**
  * Custom blocks
  */
-//% groups="['Mouse', 'Keyboard' , 'Graphs', 'Sound', 'Overlay', 'Requests', 'Files', ]"
+//% groups="['Mouse', 'Keyboard' , 'Graphs', 'Sound', 'Overlay', 'Requests', 'Files', 'Tools' ]"
 
 namespace SerialMaker {
 
     /**
+    * custom block that contains no code but
+    * allows users to place a comment 
+    * in the parameter field.
+    */
+    //% group="Tools"
+    //% block = "Comment"
+    //% theComment.defl="This block is just for comments"
+    export function comment(theComment: string): void {
+        // do nothing
+    }
+
+    /**
     * Averages a value across selected time frame.
     */
+    //% group="Tools"
     // note that Caml casing yields lower case
     // block text with spaces
     //% block="Average measurement of $value measured $measurements times in $time_range (ms) "|| icon="\uf080" 
@@ -243,13 +258,13 @@ namespace SerialMaker {
                 break;
         }
         switch (action_choice) {
-            case Mouse_Button_Actions.Click:
+            case Mouse_Button_Actions.CLICK:
                 action_string = "CLICK";
                 break;
-            case Mouse_Button_Actions.Hold:
+            case Mouse_Button_Actions.HOLD:
                 action_string = "HOLD";
                 break;
-            case Mouse_Button_Actions.Release:
+            case Mouse_Button_Actions.RELEASE:
                 action_string = "RELEASE";
                 break;
 
@@ -265,33 +280,33 @@ namespace SerialMaker {
     //% group="Keyboard"
     //% color=#1a53ff
     //% block="Keyboard %Keyboard_Actions the %Keyboard_Keys key" icon="\uf080"
-    export function Keyboard(key_choice: Keyboard_Keys, action_choice: Keyboard_Actions): void {
-        let key_string: string;
-        let action_string: string;
+    export function Keyboard(action_choice: Keyboard_Actions, key_choice: Keyboard_Keys): void {
 
-        switch (key_choice) {
-            case Keyboard_Keys.A:
-                key_string = "A";
-                break;
-
-        }
-        switch (action_choice) {
-            case Keyboard_Actions.Tap:
-                action_string = "TAP";
-                break;
-            case Keyboard_Actions.Hold:
-                action_string = "HOLD";
-                break;
-            case Keyboard_Actions.Release:
-                action_string = "RELEASE";
-                break;
-
-        }
-
-        serial.writeLine("KEY_" + action_string + "," + key_string);
+        serial.writeLine("KEY_" + action_choice + "," + key_choice);
         basic.pause(20)
     }
 
+    /**
+    * Text to Speech dropdown
+    */
+    //% blockId=wordPicker block="$word"
+    //% group="Sound"
+    //% color=#1a53ff
+    //% block="Text to speech %Keyboard_Actions the %Keyboard_Keys key" icon="\uf080"
+    //% word.fieldEditor="textdropdown"
+    //% word.fieldOptions.decompileLiterals=true
+    //% word.fieldOptions.values='hi,hello world,STOP_SPEECH,SET_MALE_VOICE,SET_FEMALE_VOICE'
+    //% word.defl='hello world'
+    export function __wordPicker(word: string): string {
+        return word;
+    }
+    
+    //% block="Text to Speech $word"
+    //% word.shadow="wordPicker"
+    export function say(word: string) {
+        serial.writeLine("SAY," + word);
+        return;
+    }
 
     //% color=#2db300
     //% block="Update Live Display"
