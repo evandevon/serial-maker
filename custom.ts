@@ -5,7 +5,9 @@
 */
 
 enum Keyboard_Keys {
-    A, B, C
+    A,
+    B,
+    C
 }
 
 enum Keyboard_Actions {
