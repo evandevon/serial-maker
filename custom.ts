@@ -5,9 +5,15 @@
 */
 
 enum Keyboard_Keys {
-    A,
-    B,
-    C
+    A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z,
+    
+    DOWN,UP,LEFT,RIGHT,
+    F1,F2,F3,F4,F5,F6,F7,F8,F9,F10,F11,F12,
+    PRINTSCREEN,ENTER,SPACE,DELETE,BACKSPACE,COPY,CUT,PASTE,
+    VOLUMEUP, VOLUMEDOWN, VOLUMEMUTE, PLAYPAUSE,
+    PAGEDOWN,PAGEUP,HOME,END,TAB,ESC,CTRL,ALT,SHIFT,WINDOWS,CAPSLOCK,
+    //%block ="1"
+    ONE
 }
 
 enum Keyboard_Actions {
@@ -16,7 +22,7 @@ enum Keyboard_Actions {
     //% block="Release"
     Release,
     //% block="Hold"
-    Hold,
+    Hold
 }
 
 enum Direction_Words {
@@ -254,8 +260,8 @@ namespace SerialMaker {
     }
 
     /**
-        * Clicks, Holds or Releases the keyboard buttons
-        */
+    * Clicks, Holds or Releases the keyboard keys
+    */
     //% group="Keyboard"
     //% color=#1a53ff
     //% block="Keyboard %Keyboard_Actions the %Keyboard_Keys key" icon="\uf080"
