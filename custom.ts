@@ -73,7 +73,7 @@ enum MyEnum {
 /**
  * Custom blocks
  */
-//% groups="['Mouse', 'Keyboard' , 'Graphs', 'Sound', 'Overlay', 'Requests', 'Files', 'Tools' ]"
+//% groups="['Mouse Position', 'Mouse Movement', 'Mouse Buttons', 'Keyboard' , 'Graphs', 'Sound', 'Overlay', 'Requests', 'Files', 'Tools' ]"
 
 namespace SerialMaker {
 
@@ -110,7 +110,7 @@ namespace SerialMaker {
     /**
     * Scrolls the mouse 1 row/column in the chosen direction.
     */
-    //% group="Mouse"
+    //% group="Mouse Buttons"
     //% color=#ff0f0f
     //% block="Mouse scroll %choice" icon="\uf080"
     export function mouse_scroll_direction(choice: Direction_Words): void {
@@ -140,7 +140,7 @@ namespace SerialMaker {
     /**
     * Moves the mouse 10 pixels in the chosen direction.
     */
-    //% group="Mouse"
+    //% group="Mouse Movement"
     //% color=#ff0f0f
     //% block="Mouse Move %choice 10 pixels" icon="\uf080"
     export function mouse_move_direction(choice: Direction_Words): void {
@@ -170,7 +170,7 @@ namespace SerialMaker {
     /**
     * Sets the mouse position in the X or Y direction (0,0 is top left)
     */
-    //% group="Mouse"
+    //% group="Mouse Position"
     //% color=#ff0f0f
     //% block="Set Mouse Position %Mouse_Direction to $pixel pixel"|| icon="\uf080" color=#ff0f0f
     export function mouse_position(mouse_direction: Mouse_Direction, pixel: number){
@@ -181,7 +181,7 @@ namespace SerialMaker {
     /**
     * Sets the mouse position in the X and Y direction (0,0 is top left)
     */
-    //% group="Mouse"
+    //% group="Mouse Position"
     //% color=#ff0f0f
     //% block="Set Mouse Position to X:$pixel_x and Y:$pixel_y"|| icon="\uf080" 
     export function mouse_position_xy(pixel_x: number, pixel_y: number) {
@@ -192,7 +192,7 @@ namespace SerialMaker {
     /**
     * Sets the mouse position in the X or Y direction as a percentage (0,0 is top left and 100,100 is lower right)
     */
-    //% group="Mouse"
+    //% group="Mouse Position"
     //% color=#ff0f0f
     //% block="Set Mouse Position %Mouse_Direction Percent to $percent"|| icon="\uf080"
     export function mouse_position_percent(mouse_direction: Mouse_Direction, percent: number) {
@@ -203,7 +203,7 @@ namespace SerialMaker {
     /**
     * Sets the mouse position in the X and Y direction as a percentage (0,0 is top left and 100,100 is lower right)
     */
-    //% group="Mouse"
+    //% group="Mouse Position"
     //% color=#ff0f0f
     //% block="Set Mouse Position Percent to X:$percent_x Y:$percent_y"|| icon="\uf080"
     export function mouse_position_percent_xy(percent_x: number, percent_y: number) {
@@ -214,7 +214,7 @@ namespace SerialMaker {
     /**
     * Moves the mouse in the X or Y direction by the specified amount of pixels
     */
-    //% group="Mouse"
+    //% group="Mouse Movement"
     //% color=#ff0f0f
     //% block="Mouse Move %Mouse_Direction by $pixel pixels"|| icon="\uf080" 
     export function mouse_move(mouse_direction: Mouse_Direction, pixel: number) {
@@ -225,7 +225,7 @@ namespace SerialMaker {
     /**
     * Moves the mouse in the X and Y directions by the specified amounts of pixels
     */
-    //% group="Mouse"
+    //% group="Mouse Movement"
     //% color=#ff0f0f
     //% block="Mouse Move XY by X:$pixel_x Y:$pixel_y pixels"|| icon="\uf080" 
     export function mouse_move_xy(pixel_x: number, pixel_y: number) {
@@ -236,7 +236,7 @@ namespace SerialMaker {
     /**
     * Clicks, Holds or Releases the mouse buttons
     */
-    //% group="Mouse"
+    //% group="Mouse Buttons"
     //% color=#ff0f0f
     //% block="Mouse button %Mouse_Buttons action %Mouse_Button_Actions" icon="\uf080"
     export function mouse_button_action(button_choice:Mouse_Buttons ,action_choice: Mouse_Button_Actions): void {
