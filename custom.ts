@@ -331,14 +331,38 @@ namespace SerialMaker {
 
     /**
      * writes to a local file (csv, txt)
-     * Saves to 'App directory\Data Logs\'
+     * Saves to 'App directory\Data Logs\<filename>.csv'
      */
     //% group="Files"
     //% color=#b30086
-    //% filename.defl="Data File.txt"
+    //% filename.defl="Data File"
     //% block="File write $data to bottom of file:$filename"|| icon="\uf080"
     export function file_add(data: string, filename: string): void {
         serial.writeLine("FILE_WRITE," + filename + "," + "ADD," + data);
+        basic.pause(20)
+    }
+
+    /**
+     * writes to a local file (csv, txt)
+     * Saves to 'App directory\Data Logs\<filename>.csv'
+     */
+    //% group="Files"
+    //% color=#b30086
+    //% filename.defl="Data File"
+    //% block="File write $data to file:$filename at line :$line_num"|| icon="\uf080"
+    export function file_add_to_line(data: string, filename: string, line_num: number): void {
+        serial.writeLine("FILE_WRITE," + filename + "," + line_num + "," + data);
+        basic.pause(20)
+    }
+
+    /**
+    * Clears the file
+    */
+    //% group="Files"
+    //% color=#ff9933
+    //% block="Empty the file:$filename"
+    export function file_empty(filename: string): void {
+        serial.writeLine("FILE_WRITE," + filename + ",NEW" );
         basic.pause(20)
     }
 
