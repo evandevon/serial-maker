@@ -225,6 +225,34 @@ enum Sound_Choices {
     Unpause
 }
 
+enum Overlay_Colours {
+    //% block="crimson"
+    crimson = 1,
+    //% block="magenta"
+    magenta,
+    //% block="purple"
+    purple,
+    //% block="blue"
+    blue,
+    //% block="cyan"
+    cyan,
+    //% block="turquoise"
+    turquoise,
+    //% block="lime"
+    lime,
+    //% block="yellow"
+    yellow,
+    //% block="orange"
+    orange,
+    //% block="red"
+    red,
+    //% block="white"
+    white,
+    //% block="gray"
+    gray,
+    //% block="black"
+    black
+}
 
 /**
  * Custom blocks
@@ -294,10 +322,22 @@ namespace SerialMaker {
     */
     //% group="Files"
     //% color=#b30086
-    //% filename_string.defl="filename"
-    //% block="File read $filename_string from line $line_num"|| icon="\uf080"
-    export function file_read(filename_string: string, line_num: number): void {
-        serial.writeLine("FILE_READ," + filename_string + "," + "line_num");
+    //% filename.defl="filename"
+    //% block="File read $filename from line $line_num"|| icon="\uf080"
+    export function file_read(filename: string, line_num: number): void {
+        serial.writeLine("FILE_READ," + filename + "," + "line_num");
+        basic.pause(20)
+    }
+
+    /**
+    * writes to a local file (csv, txt)
+    */
+    //% group="Files"
+    //% color=#b30086
+    //% filename.defl="\\Data Logs\\Data File.txt"
+    //% block="File write $data to bottom of file:$filename"|| icon="\uf080"
+    export function file_add(data: string, filename: string): void {
+        serial.writeLine("FILE_WRITE," + filename + "," + "ADD," + data);
         basic.pause(20)
     }
 
@@ -410,13 +450,55 @@ namespace SerialMaker {
     //% x_pos.defl=0
     //% y_pos.defl=0
     //% size.defl=30
-    //% colour.defl="lime"
+    //% colour.defl=Overlay_Colours.lime
     //% expandableArgumentMode="enabled"
     //% inlineInputMode=inline
-    //% block="Overlay text %overlay_text|| at X:$x_pos Y:$y_pos font size:$size colour:$colour"|| icon="\uf080" color=#ff0f0f
-    export function overlay(overlay_text: string, x_pos: number, y_pos: number, size: number, colour: string) {
-        serial.writeLine("OVERLAY," + overlay_text + "," + x_pos + "," + y_pos + "," + size + "," + colour);
-        return;
+    //% block="Overlay text %overlay_text|| at X:$x_pos Y:$y_pos font size:$size colour:%colour"|| icon="\uf080" color=#ff0f0f
+    export function overlay(overlay_text: string, x_pos?: number, y_pos?: number, size?: number, colour?: Overlay_Colours): void {
+        let colour_string = "lime"; // Default value
+        switch (colour) {
+            case Overlay_Colours.crimson:
+                colour_string = "crimson";
+                break;
+            case Overlay_Colours.magenta:
+                colour_string = "magenta";
+                break;
+            case Overlay_Colours.purple:
+                colour_string = "purple";
+                break;
+            case Overlay_Colours.blue:
+                colour_string = "blue";
+                break;
+            case Overlay_Colours.cyan:
+                colour_string = "cyan";
+                break;
+            case Overlay_Colours.turquoise:
+                colour_string = "turquoise";
+                break;
+            case Overlay_Colours.lime:
+                colour_string = "lime";
+                break;
+            case Overlay_Colours.yellow:
+                colour_string = "yellow";
+                break;
+            case Overlay_Colours.orange:
+                colour_string = "orange";
+                break;
+            case Overlay_Colours.red:
+                colour_string = "red";
+                break;
+            case Overlay_Colours.white:
+                colour_string = "white";
+                break;
+            case Overlay_Colours.gray:
+                colour_string = "gray";
+                break;
+            case Overlay_Colours.black:
+                colour_string = "black";
+                break;
+        }
+        
+        serial.writeLine("OVERLAY," + overlay_text + "," + x_pos + "," + y_pos + "," + size + "," + colour_string);
     }
 
     /**
