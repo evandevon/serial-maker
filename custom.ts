@@ -336,6 +336,7 @@ namespace SerialMaker {
     //% group="Files"
     //% color=#b30086
     //% filename.defl="Data File"
+    //% data.defl="Data"
     //% block="File write $data to bottom of file:$filename"|| icon="\uf080"
     export function file_add(data: string, filename: string): void {
         serial.writeLine("FILE_WRITE," + filename + "," + "ADD," + data);
@@ -349,6 +350,7 @@ namespace SerialMaker {
     //% group="Files"
     //% color=#b30086
     //% filename.defl="Data File"
+    //% data.defl="Data"
     //% block="File write $data to file:$filename at line:$line_num"|| icon="\uf080"
     export function file_add_to_line(data: string, filename: string, line_num: number): void {
         serial.writeLine("FILE_WRITE," + filename + "," + line_num + "," + data);
