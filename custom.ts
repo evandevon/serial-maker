@@ -329,6 +329,19 @@ namespace SerialMaker {
         basic.pause(20)
     }
 
+    /**
+     * writes to a local file (csv, txt)
+     */
+    //% group="Files"
+    //% color=#b30086
+    //% filename.defl="filename"
+    //% block="File write $data to bottom of file:$filename"|| icon="\uf080"
+    export function file_add(data: string, filename: string): void {
+        serial.writeLine("FILE_WRITE," + filename + "," + "ADD," + data);
+        basic.pause(20)
+    }
+
+
  
     /**
     * plays a local sound file (mp3, wav)
