@@ -322,8 +322,8 @@ namespace SerialMaker {
     */
     //% group="Files"
     //% color=#b30086
-    //% filename.defl="filename"
-    //% block="File read $filename from line $line_num"|| icon="\uf080"
+    //% filename.defl="Data File"
+    //% block="File read $filename from line:$line_num"|| icon="\uf080"
     export function file_read(filename: string, line_num: number): void {
         serial.writeLine("FILE_READ," + filename + "," + "line_num");
         basic.pause(20)
@@ -349,7 +349,7 @@ namespace SerialMaker {
     //% group="Files"
     //% color=#b30086
     //% filename.defl="Data File"
-    //% block="File write $data to file:$filename at line :$line_num"|| icon="\uf080"
+    //% block="File write $data to file:$filename at line:$line_num"|| icon="\uf080"
     export function file_add_to_line(data: string, filename: string, line_num: number): void {
         serial.writeLine("FILE_WRITE," + filename + "," + line_num + "," + data);
         basic.pause(20)
@@ -360,6 +360,7 @@ namespace SerialMaker {
     */
     //% group="Files"
     //% color=#b30086
+    //% filename.defl="Data File"
     //% block="Empty the file:$filename"
     export function file_empty(filename: string): void {
         serial.writeLine("FILE_WRITE," + filename + ",NEW" );
