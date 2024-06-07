@@ -412,6 +412,7 @@ namespace SerialMaker {
     //% size.defl=30
     //% colour.defl="lime"
     //% expandableArgumentMode="enabled"
+    //% inlineInputMode=inline
     //% block="Overlay text %overlay_text|| at X:$x_pos Y:$y_pos font size:$size colour:$colour"|| icon="\uf080" color=#ff0f0f
     export function overlay(overlay_text: string, x_pos: number, y_pos: number, size: number, colour: string) {
         serial.writeLine("OVERLAY," + overlay_text + "," + x_pos + "," + y_pos + "," + size + "," + colour);
