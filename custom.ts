@@ -237,7 +237,7 @@ namespace SerialMaker {
     //% group="Keyboard"
     //% color=#1a53ff
     //% block = "Type Text $text_string"|| icon="\uf080"
-    //% theComment.defl="Text"
+    //% text_string.defl="Text"
     export function Type_text(text_string: string): void {
         serial.writeLine("TEXT," + text_string);
         basic.pause(20)
