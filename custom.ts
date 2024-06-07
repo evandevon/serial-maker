@@ -331,10 +331,11 @@ namespace SerialMaker {
 
     /**
      * writes to a local file (csv, txt)
+     * Saves to 'App directory\Data Logs\'
      */
     //% group="Files"
     //% color=#b30086
-    //% filename.defl="\\Data Logs\\Data File.txt"
+    //% filename.defl="Data File.txt"
     //% block="File write $data to bottom of file:$filename"|| icon="\uf080"
     export function file_add(data: string, filename: string): void {
         serial.writeLine("FILE_WRITE," + filename + "," + "ADD," + data);
