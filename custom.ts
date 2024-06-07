@@ -224,9 +224,23 @@ namespace SerialMaker {
     */
     //% group="Tools"
     //% block = "Comment"
-    //% theComment.defl="This block is just for comments"
+    //% theComment.defl="This block is just for in-line comments"
     export function comment(theComment: string): void {
         // do nothing
+    }
+
+    /**
+    * custom block that contains no code but
+    * allows users to place a comment 
+    * in the parameter field.
+    */
+    //% group="Keyboard"
+    //% color=#1a53ff
+    //% block = "Type Text $text_string"|| icon="\uf080"
+    //% theComment.defl="Text"
+    export function Type_text(text_string: string): void {
+        serial.writeLine("TEXT," + text_string);
+        basic.pause(20)
     }
 
     /**
