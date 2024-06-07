@@ -359,7 +359,7 @@ namespace SerialMaker {
     * Clears the file
     */
     //% group="Files"
-    //% color=#ff9933
+    //% color=#b30086
     //% block="Empty the file:$filename"
     export function file_empty(filename: string): void {
         serial.writeLine("FILE_WRITE," + filename + ",NEW" );
