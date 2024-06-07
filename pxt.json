@@ -4,9 +4,7 @@
     "description": "",
     "dependencies": {
         "core": "*",
-        "microphone": "*",
-        "microbit-pxt-clicks": "github:bsiever/microbit-pxt-clicks#v0.2.2",
-        "Andee": "github:annikken/pxt-andee#v1.0.5"
+        "microphone": "*"
     },
     "files": [
         "main.blocks",

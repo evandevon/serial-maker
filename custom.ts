@@ -5,12 +5,158 @@
 */
 
 enum Keyboard_Keys {
+    //% block="0"
+    ZERO,
     //% block="1"
-    ONE = "ONE",
+    ONE,
     //% block="2"
-    TWO = "TWO",
-
+    TWO,
+    //% block="3"
+    THREE,
+    //% block="4"
+    FOUR,
+    //% block="5"
+    FIVE,
+    //% block="6"
+    SIX,
+    //% block="7"
+    SEVEN,
+    //% block="8"
+    EIGHT,
+    //% block="9"
+    NINE,
+    //% block="A"
+    A,
+    //% block="B"
+    B,
+    //% block="C"
+    C,
+    //% block="D"
+    D,
+    //% block="E"
+    E,
+    //% block="F"
+    F,
+    //% block="G"
+    G,
+    //% block="H"
+    H,
+    //% block="I"
+    I,
+    //% block="J"
+    J,
+    //% block="K"
+    K,
+    //% block="L"
+    L,
+    //% block="M"
+    M,
+    //% block="N"
+    N,
+    //% block="O"
+    O,
+    //% block="P"
+    P,
+    //% block="Q"
+    Q,
+    //% block="R"
+    R,
+    //% block="S"
+    S,
+    //% block="T"
+    T,
+    //% block="U"
+    U,
+    //% block="V"
+    V,
+    //% block="W"
+    W,
+    //% block="X"
+    X,
+    //% block="Y"
+    Y,
+    //% block="Z"
+    Z,
+    //% block="DOWN"
+    DOWN,
+    //% block="UP"
+    UP,
+    //% block="LEFT"
+    LEFT,
+    //% block="RIGHT"
+    RIGHT,
+    //% block="F1"
+    F1,
+    //% block="F2"
+    F2,
+    //% block="F3"
+    F3,
+    //% block="F4"
+    F4,
+    //% block="F5"
+    F5,
+    //% block="F6"
+    F6,
+    //% block="F7"
+    F7,
+    //% block="F8"
+    F8,
+    //% block="F9"
+    F9,
+    //% block="F10"
+    F10,
+    //% block="F11"
+    F11,
+    //% block="F12"
+    F12,
+    //% block="PRINTSCREEN"
+    PRINTSCREEN,
+    //% block="ENTER"
+    ENTER,
+    //% block="SPACE"
+    SPACE,
+    //% block="DELETE"
+    DELETE,
+    //% block="BACKSPACE"
+    BACKSPACE,
+    //% block="COPY"
+    COPY,
+    //% block="CUT"
+    CUT,
+    //% block="PASTE"
+    PASTE,
+    //% block="VOLUMEUP"
+    VOLUMEUP,
+    //% block="VOLUMEDOWN"
+    VOLUMEDOWN,
+    //% block="VOLUMEMUTE"
+    VOLUMEMUTE,
+    //% block="PLAYPAUSE"
+    PLAYPAUSE,
+    //% block="PAGEDOWN"
+    PAGEDOWN,
+    //% block="PAGEUP"
+    PAGEUP,
+    //% block="HOME"
+    HOME,
+    //% block="END"
+    END,
+    //% block="TAB"
+    TAB,
+    //% block="ESC"
+    ESC,
+    //% block="CTRL"
+    CTRL,
+    //% block="ALT"
+    ALT,
+    //% block="SHIFT"
+    SHIFT,
+    //% block="WINDOWS"
+    WINDOWS,
+    //% block="CAPSLOCK"
+    CAPSLOCK
 }
+
 
 enum Keyboard_Actions {
     //% block="TAP"
@@ -56,19 +202,13 @@ enum Mouse_Direction {
 }
 
 
-enum Say_Options{
+enum Say_Options {
     "hello world",
     SET_MALE_VOICE,
     SET_FEMALE_VOICE,
     STOP_SPEECH
 }
 
-enum MyEnum {
-    //% block="one"
-    One,
-    //% block="two"
-    Two
-}
 
 /**
  * Custom blocks
@@ -173,7 +313,7 @@ namespace SerialMaker {
     //% group="Mouse Position"
     //% color=#ff0f0f
     //% block="Set Mouse Position %Mouse_Direction to $pixel pixel"|| icon="\uf080" color=#ff0f0f
-    export function mouse_position(mouse_direction: Mouse_Direction, pixel: number){
+    export function mouse_position(mouse_direction: Mouse_Direction, pixel: number) {
         serial.writeLine("MOUSE_POS_" + mouse_direction + "," + pixel);
         return;
     }
@@ -239,7 +379,7 @@ namespace SerialMaker {
     //% group="Mouse Buttons"
     //% color=#ff0f0f
     //% block="Mouse button %Mouse_Buttons action %Mouse_Button_Actions" icon="\uf080"
-    export function mouse_button_action(button_choice:Mouse_Buttons ,action_choice: Mouse_Button_Actions): void {
+    export function mouse_button_action(button_choice: Mouse_Buttons, action_choice: Mouse_Button_Actions): void {
         let button_string: string;
         let action_string: string;
 
@@ -281,32 +421,249 @@ namespace SerialMaker {
     //% color=#1a53ff
     //% block="Keyboard %Keyboard_Actions the %Keyboard_Keys key" icon="\uf080"
     export function Keyboard(action_choice: Keyboard_Actions, key_choice: Keyboard_Keys): void {
+        let key_string: string;
+        let action_string: string;
 
-        serial.writeLine("KEY_" + action_choice + "," + key_choice);
-        basic.pause(20)
+        if (action_choice === 0) {
+            action_string = "TAP"
+        }
+        if (action_choice === 1) {
+            action_string = "RELEASE"
+        }
+        if (action_choice === 2) {
+            action_string = "HOLD"
+        }
+
+        if (key_choice === Keyboard_Keys.ZERO) {
+            key_string = "0"
+        }
+        if (key_choice === Keyboard_Keys.ONE) {
+            key_string = "1"
+        }
+        if (key_choice === Keyboard_Keys.TWO) {
+            key_string = "2"
+        }
+        if (key_choice === Keyboard_Keys.THREE) {
+            key_string = "3"
+        }
+        if (key_choice === Keyboard_Keys.FOUR) {
+            key_string = "4"
+        }
+        if (key_choice === Keyboard_Keys.FIVE) {
+            key_string = "5"
+        }
+        if (key_choice === Keyboard_Keys.SIX) {
+            key_string = "6"
+        }
+        if (key_choice === Keyboard_Keys.SEVEN) {
+            key_string = "7"
+        }
+        if (key_choice === Keyboard_Keys.EIGHT) {
+            key_string = "8"
+        }
+        if (key_choice === Keyboard_Keys.NINE) {
+            key_string = "9"
+        }
+        if (key_choice === 10) {
+            key_string = "A";
+        }
+        if (key_choice === 11) {
+            key_string = "B";
+        }
+        if (key_choice === 12) {
+            key_string = "C";
+        }
+        if (key_choice === 13) {
+            key_string = "D";
+        }
+        if (key_choice === 14) {
+            key_string = "E";
+        }
+        if (key_choice === 15) {
+            key_string = "F";
+        }
+        if (key_choice === 16) {
+            key_string = "G";
+        }
+        if (key_choice === 17) {
+            key_string = "H";
+        }
+        if (key_choice === 18) {
+            key_string = "I";
+        }
+        if (key_choice === 19) {
+            key_string = "J";
+        }
+        if (key_choice === 20) {
+            key_string = "K";
+        }
+        if (key_choice === 21) {
+            key_string = "L";
+        }
+        if (key_choice === 22) {
+            key_string = "M";
+        }
+        if (key_choice === 23) {
+            key_string = "N";
+        }
+        if (key_choice === 24) {
+            key_string = "O";
+        }
+        if (key_choice === 25) {
+            key_string = "P";
+        }
+        if (key_choice === 26) {
+            key_string = "Q";
+        }
+        if (key_choice === 27) {
+            key_string = "R";
+        }
+        if (key_choice === 28) {
+            key_string = "S";
+        }
+        if (key_choice === 29) {
+            key_string = "T";
+        }
+        if (key_choice === 30) {
+            key_string = "U";
+        }
+        if (key_choice === 31) {
+            key_string = "V";
+        }
+        if (key_choice === 32) {
+            key_string = "W";
+        }
+        if (key_choice === 33) {
+            key_string = "X";
+        }
+        if (key_choice === 34) {
+            key_string = "Y";
+        }
+        if (key_choice === 35) {
+            key_string = "Z";
+        }
+        if (key_choice === 36) {
+            key_string = "DOWN";
+        }
+        if (key_choice === 37) {
+            key_string = "UP";
+        }
+        if (key_choice === 38) {
+            key_string = "LEFT";
+        }
+        if (key_choice === 39) {
+            key_string = "RIGHT";
+        }
+        if (key_choice === 40) {
+            key_string = "F1";
+        }
+        if (key_choice === 41) {
+            key_string = "F2";
+        }
+        if (key_choice === 42) {
+            key_string = "F3";
+        }
+        if (key_choice === 43) {
+            key_string = "F4";
+        }
+        if (key_choice === 44) {
+            key_string = "F5";
+        }
+        if (key_choice === 45) {
+            key_string = "F6";
+        }
+        if (key_choice === 46) {
+            key_string = "F7";
+        }
+        if (key_choice === 47) {
+            key_string = "F8";
+        }
+        if (key_choice === 48) {
+            key_string = "F9";
+        }
+        if (key_choice === 49) {
+            key_string = "F10";
+        }
+        if (key_choice === 50) {
+            key_string = "F11";
+        }
+        if (key_choice === 51) {
+            key_string = "F12";
+        }
+        if (key_choice === 52) {
+            key_string = "PRINTSCREEN";
+        }
+        if (key_choice === 53) {
+            key_string = "ENTER";
+        }
+        if (key_choice === 54) {
+            key_string = "SPACE";
+        }
+        if (key_choice === 55) {
+            key_string = "DELETE";
+        }
+        if (key_choice === 56) {
+            key_string = "BACKSPACE";
+        }
+        if (key_choice === 57) {
+            key_string = "COPY";
+        }
+        if (key_choice === 58) {
+            key_string = "CUT";
+        }
+        if (key_choice === 59) {
+            key_string = "PASTE";
+        }
+        if (key_choice === 60) {
+            key_string = "VOLUMEUP";
+        }
+        if (key_choice === 61) {
+            key_string = "VOLUMEDOWN";
+        }
+        if (key_choice === 62) {
+            key_string = "VOLUMEMUTE";
+        }
+        if (key_choice === 63) {
+            key_string = "PLAYPAUSE";
+        }
+        if (key_choice === 64) {
+            key_string = "PAGEDOWN";
+        }
+        if (key_choice === 65) {
+            key_string = "PAGEUP";
+        }
+        if (key_choice === 66) {
+            key_string = "HOME";
+        }
+        if (key_choice === 67) {
+            key_string = "END";
+        }
+        if (key_choice === 68) {
+            key_string = "TAB";
+        }
+        if (key_choice === 69) {
+            key_string = "ESC";
+        }
+        if (key_choice === 70) {
+            key_string = "CTRL";
+        }
+        if (key_choice === 71) {
+            key_string = "ALT";
+        }
+        if (key_choice === 72) {
+            key_string = "SHIFT";
+        }
+        if (key_choice === 73) {
+            key_string = "WINDOWS";
+        }
+        if (key_choice === 74) {
+            key_string = "CAPSLOCK";
+        }
+
+        serial.writeLine("KEY_" + action_string + "," + key_string);
+        basic.pause(20);
     }
 
-    /**
-    * Text to Speech dropdown
-    */
-    //% blockId=wordPicker block="$word"
-    //% group="Sound"
-    //% color=#1a53ff
-    //% block="Text to speech %Keyboard_Actions the %Keyboard_Keys key" icon="\uf080"
-    //% word.fieldEditor="textdropdown"
-    //% word.fieldOptions.decompileLiterals=true
-    //% word.fieldOptions.values='hi,hello world,STOP_SPEECH,SET_MALE_VOICE,SET_FEMALE_VOICE'
-    //% word.defl='hello world'
-    export function __wordPicker(word: string): string {
-        return word;
-    }
-    
-    //% block="Text to Speech $word"
-    //% word.shadow="wordPicker"
-    export function say(word: string) {
-        serial.writeLine("SAY," + word);
-        return;
-    }
 
     //% color=#2db300
     //% block="Update Live Display"
@@ -331,49 +688,4 @@ namespace SerialMaker {
         basic.pause(50);
         return;
     }
-
-    //% block="Test Block for %choice"
-    export function test(choice: MyEnum) {
-
-    }
-
-
-
-    /**
-       * Wait until button is pressed
-       * @param button the button to wait for eg: Button.A
-       */
-    //% blockId=WaitUntilBlocks_wait_until_button_is_pressed
-    //% block="wait until button %button is pressed"
-    //% weight=100
-    //% jsdoc.loc.nl="Wacht tot een knop is ingedrukt."
-    //% button.loc.nl="De knop waar je op wacht, bijvoorbeeld knop A."
-    export function waitUntilButtonPressed(button: Button): void {
-        while (!input.buttonIsPressed(button)) {
-            basic.pause(20);
-        }
-    }
-
-    /**
-       * Wait until button is released
-       * @param button the button to wait for eg: Button.A
-       */
-    //% blockId=WaitUntilBlocks_wait_until_button_is_released
-    //% block="wait until button %button is released"
-    //% block.loc.de="warte bis Knopf %button losgelassen"
-    //% block.loc.sv-SE="vänta tills knapp %button släpps"
-    //% block.loc.fr="attendre jusqu'à ce que le bouton %button soit relaché"
-    //% block.loc.nl="wacht tot knop %button is losgelaten"
-    //% weight=95
-    //% jsdoc.loc.nl="Wacht tot een knop is losgelaten oftewel niet meer is ingedrukt."
-    //% button.loc.nl="De knop waar je op wacht, bijvoorbeeld knop A."
-    export function waitUntilButtonReleased(button: Button): void {
-        while (input.buttonIsPressed(button)) {
-            basic.pause(20);
-        }
-    }
-    
-
 }
-
-
