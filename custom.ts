@@ -459,7 +459,7 @@ namespace SerialMaker {
     * Stops the sine wave
     */
     //% group="Sound"
-    //% color=#ff9933
+    //% color=#88cc00
     //% block="Stop sine wave"
     export function stop_sine(): void {
         serial.writeLine("SINE_WAVE,STOP");
