@@ -167,6 +167,13 @@ enum Keyboard_Actions {
     HOLD
 }
 
+enum Enable_Disable{
+    //% block="ENABLE"
+    ENABLE,
+    //% block="DISABLE"
+    DISABLE,
+}
+
 enum Direction_Words {
     //% block="LEFT"
     LEFT,
@@ -202,11 +209,11 @@ enum Mouse_Direction {
 }
 
 
-enum Say_Options {
-    "hello world",
+enum TTS_Choices {
+    //% block="SET MALE VOICE"
     SET_MALE_VOICE,
-    SET_FEMALE_VOICE,
-    STOP_SPEECH
+    //% block="SET FEMALE VOICE"
+    SET_FEMALE_VOICE
 }
 
 
@@ -254,6 +261,26 @@ namespace SerialMaker {
     }
 
     /**
+    * Enables the Keyboard and mouse translation
+    */
+    //% group="Tools"
+    //% color=#ff9933
+    //% block="%Enable_Disable keyboard and mouse translation"
+    export function Keyboard_Mouse_Toggle(choice: Enable_Disable): void {
+        switch (choice) {
+            case Enable_Disable.ENABLE:
+                serial.writeLine("START_HID");
+                break;
+            case Enable_Disable.DISABLE:
+                serial.writeLine("STOP_HID");
+                break;
+
+        }
+        basic.pause(20)
+    }
+
+
+    /**
     * reads a local file (csv, txt)
     */
     //% group="Files"
@@ -264,6 +291,39 @@ namespace SerialMaker {
         serial.writeLine("FILE_READ," + filename_string + "," + "line_num");
         basic.pause(20)
     }
+
+    /**
+    * plays a local sound file (mp3, wav)
+    */
+    //% group="Sound"
+    //% color=#88cc00
+    //% filename_string.defl="filename"
+    //% block="Play sound $filename_string"|| icon="\uf080"
+    export function play_sound(filename_string: string): void {
+        serial.writeLine("SOUND," + filename_string);
+        basic.pause(20)
+    }
+
+    /**
+    * Sets the text to speech voice
+    */
+    //% group="Sound"
+    //% color=#88cc00
+    //% block="Text to speech %choice"|| icon="\uf080"
+    export function TTS_Setting(choice: TTS_Choices): void {
+        switch (choice) {
+            case TTS_Choices.SET_MALE_VOICE:
+                serial.writeLine("SAY,SET_MALE_VOICE");
+                break;
+            case TTS_Choices.SET_FEMALE_VOICE:
+                serial.writeLine("SAY,SET_FEMALE_VOICE");
+                break;
+
+        }
+        basic.pause(20)
+    }
+
+
 
     /**
     * sends multiple characters
@@ -714,6 +774,7 @@ namespace SerialMaker {
 
 
     //% color=#2db300
+    //% group="Tools"
     //% block="Update Live Display"
     export function SendDisplayOverSerial() {
         let Display_Grid = "";
