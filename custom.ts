@@ -223,21 +223,55 @@ namespace SerialMaker {
     * in the parameter field.
     */
     //% group="Tools"
-    //% block = "Comment"
+    //% color=#ff9933
+    //% block="In-Code Comment $theComment"
     //% theComment.defl="This block is just for in-line comments"
     export function comment(theComment: string): void {
         // do nothing
     }
 
     /**
-    * custom block that contains no code but
-    * allows users to place a comment 
-    * in the parameter field.
+    * sends a comment 
+    */
+    //% group="Tools"
+    //% color=#ff9933
+    //% block="Send Comment $theComment"
+    //% theComment.defl="Sends comments"
+    export function send_comment(theComment: string): void {
+        serial.writeLine("#" + theComment);
+        basic.pause(20)
+    }
+
+    /**
+    * Clears the data log
+    */
+    //% group="Tools"
+    //% color=#ff9933
+    //% block="Clear Data Log"
+    export function clear_log(): void {
+        serial.writeLine("CLEAR_LOG");
+        basic.pause(20)
+    }
+
+    /**
+    * reads a local file (csv, txt)
+    */
+    //% group="Files"
+    //% color=#b30086
+    //% filename_string.defl="filename"
+    //% block="File read $filename_string from line $line_num"|| icon="\uf080"
+    export function file_read(filename_string: string, line_num: number): void {
+        serial.writeLine("FILE_READ," + filename_string + "," + "line_num");
+        basic.pause(20)
+    }
+
+    /**
+    * sends multiple characters
     */
     //% group="Keyboard"
     //% color=#1a53ff
-    //% block = "Type Text $text_string"|| icon="\uf080"
     //% text_string.defl="Text"
+    //% block="Type Text $text_string"|| icon="\uf080"
     export function Type_text(text_string: string): void {
         serial.writeLine("TEXT," + text_string);
         basic.pause(20)
