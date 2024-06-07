@@ -323,7 +323,17 @@ namespace SerialMaker {
         basic.pause(20)
     }
 
-
+    /**
+    * Text to speech
+    */
+    //% group="Sound"
+    //% color=#ff9933
+    //% block="Text to Speech $theText"
+    //% theText.defl="text to speech"
+    export function text_to_speech(theText: string): void {
+        serial.writeLine("SAY," + theText);
+        basic.pause(20)
+    }
 
     /**
     * sends multiple characters
