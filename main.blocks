@@ -1,1 +1,1 @@
-<xml xmlns="https://developers.google.com/blockly/xml"><block type="device_button_event" id="%ts|u%9r6og~)Y(did|j" x="0" y="0"><field name="NAME">Button.A</field><statement name="HANDLER"><block type="SerialMaker_Type_text" id="X4-nw9nHZ=M(S:vIe*tM"><value name="text_string"><shadow type="text" id="9#oM,D/pV/]z(q[C,7Ot"><field name="TEXT">test text</field></shadow></value></block></statement></block></xml>
+<xml xmlns="https://developers.google.com/blockly/xml"><block type="pxt-on-start" id=";=y2}dgMokuP!VZGwCSd" x="0" y="0"></block></xml>

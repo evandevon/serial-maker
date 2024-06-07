@@ -216,6 +216,15 @@ enum TTS_Choices {
     Female
 }
 
+enum Sound_Choices {
+    //% block="Stop"
+    Stop,
+    //% block="Pause"
+    Pause,
+    //% block="Unpause"
+    Unpause
+}
+
 
 /**
  * Custom blocks
@@ -305,6 +314,28 @@ namespace SerialMaker {
     }
 
     /**
+    * Stop/Pause/Unpause currently playing audio files
+    */
+    //% group="Sound"
+    //% color=#88cc00
+    //% block="Sound %choice"|| icon="\uf080"
+    export function Sound_Actions(choice: Sound_Choices): void {
+        switch (choice) {
+            case Sound_Choices.Stop:
+                serial.writeLine("SOUND,STOP_SOUND");
+                break;
+            case Sound_Choices.Pause:
+                serial.writeLine("SOUND,PAUSE_SOUND");
+                break;
+            case Sound_Choices.Unpause:
+                serial.writeLine("SOUND,UNPAUSE_SOUND");
+                break;
+
+        }
+        basic.pause(20)
+    }
+
+    /**
     * Sets the text to speech voice
     */
     //% group="Sound"
@@ -327,11 +358,74 @@ namespace SerialMaker {
     * Text to speech
     */
     //% group="Sound"
-    //% color=#ff9933
+    //% color=#88cc00
     //% block="Text to Speech $theText"
     //% theText.defl="text to speech"
     export function text_to_speech(theText: string): void {
         serial.writeLine("SAY," + theText);
+        basic.pause(20)
+    }
+
+    /**
+    * Plays a beep sound for a given frequency and duration. Empty values default to 500 Hz ,500 ms
+    */
+    //% color=#88cc00
+    //% group="Sound"
+    //% block="Beep of $hertz (Hz) for duration $duration (ms) "|| icon="\uf080" 
+    export function beep(hertz: number, duration: number): void {
+        serial.writeLine("BEEP," + hertz + "," + duration);
+        basic.pause(20)
+    }
+
+    /**
+    * Starts a sine wave of given frequency continuously until the STOP command is received.
+    */
+    //% color=#88cc00
+    //% group="Sound"
+    //% block="Start sine wave of $hertz (Hz)"|| icon="\uf080" 
+    export function sinewave(hertz: number): void {
+        serial.writeLine("SINEWAVE," + hertz);
+        basic.pause(20)
+    }
+
+    /**
+    * Stops the sine wave
+    */
+    //% group="Sound"
+    //% color=#ff9933
+    //% block="Stop sine wave"
+    export function stop_sine(): void {
+        serial.writeLine("SINE_WAVE,STOP");
+        basic.pause(20)
+    }
+    
+    /**
+    * Shows a text overlay on the computer screen with given font at given position
+    * Acceptable colour names = crimson,magenta,purple,blue,cyan,turquoise,lime,yellow,orange,red,white,gray,black
+    * Defaults to x:0 y:0 font:30 colour:lime
+    */
+    //% group="Overlay"
+    //% color=#000000
+    //% overlay_text.defl="text"
+    //% x_pos.defl=0
+    //% y_pos.defl=0
+    //% size.defl=30
+    //% colour.defl="lime"
+    //% expandableArgumentMode="enabled"
+    //% block="Overlay text %overlay_text|| at X:$x_pos Y:$y_pos font size:$size colour:$colour"|| icon="\uf080" color=#ff0f0f
+    export function overlay(overlay_text: string, x_pos: number, y_pos: number, size: number, colour: string) {
+        serial.writeLine("OVERLAY," + overlay_text + "," + x_pos + "," + y_pos + "," + size + "," + colour);
+        return;
+    }
+
+    /**
+    * Clears the overlay
+    */
+    //% group="Overlay"
+    //% color=#000000
+    //% block="Clear overlay"
+    export function clear_overlay(): void {
+        serial.writeLine("OVERLAY,");
         basic.pause(20)
     }
 
