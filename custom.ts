@@ -545,12 +545,13 @@ namespace SerialMaker {
 
 
     /**
-        * Creates a line graph
-        */
+    * Creates a line graph
+    * separate values with pipes e.g. 15|average to assign names to the graph lines
+    */
     //% group="Graphs"
     //% color=#0099ff
     //% colour.defl=Overlay_Colours.lime
-    //% block="join text %data1 || %data2 %data3 %data4 %data5 %data6 %data7 %data8 %data9 %data10" expandableArgumentMode="enabled" inlineInputMode="inline"
+    //% block="Line graph add %data1 || %data2 %data3 %data4 %data5 %data6 %data7 %data8 %data9 %data10" expandableArgumentMode="enabled" inlineInputMode="inline"
     export function line_graph(data1: string, data2?: string, data3?: string, data4?: string, data5?: string, data6?: string, data7?: string, data8?: string, data9?: string, data10?: string): void {
         const datas = [data1, data2, data3, data4, data5, data6, data7, data8, data9, data10, ].filter(t => t !== undefined);
         
