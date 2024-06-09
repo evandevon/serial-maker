@@ -340,9 +340,10 @@ namespace SerialMaker {
     //% color=#b30086
     //% filename.defl="Data File"
     //% block="File read $filename from line:$line_num"|| icon="\uf080"
-    export function file_read(filename: string, line_num: number): void {
+    export function file_read(filename: string, line_num: number): string {
         serial.writeLine("FILE_READ," + filename + "," + "line_num");
         basic.pause(20)
+        return serial.readUntil("/n");
     }
 
     /**
