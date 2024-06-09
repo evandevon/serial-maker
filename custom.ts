@@ -553,7 +553,7 @@ namespace SerialMaker {
     //% colour.defl=Overlay_Colours.lime
     //% data1.shadow=math_number
     //% data2.shadow=math_number
-    //% block="Line graph add %data1 || %data2 %data3 %data4 %data5 %data6 %data7 %data8 %data9 %data10" expandableArgumentMode="enabled" inlineInputMode="inline"
+    //% block="Line graph add to graph 1:%data1 || , 2:%data2 , 3:%data3 , 4:%data4 , 5:%data5 , 6:%data6 , 7:%data7 , 8:%data8 , 9:%data9 , 10:%data10" expandableArgumentMode="enabled" inlineInputMode="inline"
     export function line_graph(data1: any, data2?: any, data3?: any, data4?: any, data5?: any, data6?: any, data7?: any, data8?: any, data9?: any, data10?: any): void {
         const datas = [data1, data2, data3, data4, data5, data6, data7, data8, data9, data10, ].filter(t => t !== undefined);
         
