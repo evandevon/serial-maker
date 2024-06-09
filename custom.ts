@@ -254,6 +254,24 @@ enum Overlay_Colours {
     black
 }
 
+enum Line_Graph_Options{
+    //% block="Clear Data"
+    ClearData,
+    //% block="Clear Graph"
+    ClearGraph,
+    //% block="Close Window"
+    CloseWindow
+}
+
+enum Column_Graph_Options {
+    //% block="Clear Data"
+    ClearData,
+    //% block="Clear Graph"
+    ClearGraph,
+    //% block="Close Window"
+    CloseWindow
+}
+
 /**
  * Custom blocks
  */
@@ -549,17 +567,100 @@ namespace SerialMaker {
     * separate values with pipes e.g. 15|average to assign names to the graph lines
     */
     //% group="Graphs"
-    //% color=#0099ff
-    //% colour.defl=Overlay_Colours.lime
+    //% color=#ff6666
     //% data1.shadow=math_number
     //% data2.shadow=math_number
-    //% block="Line graph add to graph 1:%data1 || , 2:%data2 , 3:%data3 , 4:%data4 , 5:%data5 , 6:%data6 , 7:%data7 , 8:%data8 , 9:%data9 , 10:%data10" expandableArgumentMode="enabled" inlineInputMode="inline"
+    //% data3.shadow=math_number
+    //% data4.shadow=math_number
+    //% data5.shadow=math_number
+    //% data6.shadow=math_number
+    //% data7.shadow=math_number
+    //% data8.shadow=math_number
+    //% data9.shadow=math_number
+    //% data10.shadow=math_number
+    //% block="Line graph add to graph 1:%data1 || 2:%data2 3:%data3 4:%data4 5:%data5 6:%data6 7:%data7 8:%data8 9:%data9 10:%data10" expandableArgumentMode="enabled" inlineInputMode="inline"
     export function line_graph(data1: any, data2?: any, data3?: any, data4?: any, data5?: any, data6?: any, data7?: any, data8?: any, data9?: any, data10?: any): void {
         const datas = [data1, data2, data3, data4, data5, data6, data7, data8, data9, data10, ].filter(t => t !== undefined);
         
         serial.writeLine("LINE_GRAPH," + datas.join(","));
+        basic.pause(20)
     }
 
+    /**
+    * line graph actions
+    */
+    //% group="Graphs"
+    //% color=#ff6666
+    //% block="%line_graph_actions the line graph "|| icon="\uf080" 
+    export function line_graph_actions(choice: Line_Graph_Options):void{
+
+        let actionString: string;
+
+        switch (choice) {
+            case Line_Graph_Options.ClearData:
+                actionString = "CLEAR_DATA";
+                break;
+            case Line_Graph_Options.ClearGraph:
+                actionString = "CLEAR_GRAPH";
+                break;
+            case Line_Graph_Options.CloseWindow:
+                actionString = "CLOSE_WINDOW";
+                break;
+        }
+
+        serial.writeLine("LINE_GRAPH," + actionString);
+        basic.pause(20)
+    }
+
+    /**
+    * Creates a column graph
+    * separate values with pipes e.g. 15|average to assign names to the graph columns
+    */
+    //% group="Graphs"
+    //% color=#ff6666
+    //% data1.shadow=math_number
+    //% data2.shadow=math_number
+    //% data3.shadow=math_number
+    //% data4.shadow=math_number
+    //% data5.shadow=math_number
+    //% data6.shadow=math_number
+    //% data7.shadow=math_number
+    //% data8.shadow=math_number
+    //% data9.shadow=math_number
+    //% data10.shadow=math_number
+    //% block="Line graph add to graph 1:%data1 || 2:%data2 3:%data3 4:%data4 5:%data5 6:%data6 7:%data7 8:%data8 9:%data9 10:%data10" expandableArgumentMode="enabled" inlineInputMode="inline"
+    export function column_graph(data1: any, data2?: any, data3?: any, data4?: any, data5?: any, data6?: any, data7?: any, data8?: any, data9?: any, data10?: any): void {
+        const datas = [data1, data2, data3, data4, data5, data6, data7, data8, data9, data10,].filter(t => t !== undefined);
+
+        serial.writeLine("COLUMN_GRAPH," + datas.join(","));
+        basic.pause(20)
+    }
+
+    /**
+    * column graph actions
+    */
+    //% group="Graphs"
+    //% color=#ff6666
+    //% block="%column_graph_actions the column graph "|| icon="\uf080" 
+    export function column_graph_actions(choice: Column_Graph_Options): void {
+
+        let actionString: string;
+
+        switch (choice) {
+            case Column_Graph_Options.ClearData:
+                actionString = "CLEAR_DATA";
+                break;
+            case Column_Graph_Options.ClearGraph:
+                actionString = "CLEAR_GRAPH";
+                break;
+            case Column_Graph_Options.CloseWindow:
+                actionString = "CLOSE_WINDOW";
+                break;
+        }
+
+        serial.writeLine("COLUMN_GRAPH," + actionString);
+        basic.pause(20)
+    }
 
     /**
     * sends multiple characters
