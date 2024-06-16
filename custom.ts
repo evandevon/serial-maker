@@ -296,8 +296,9 @@ namespace SerialMaker {
     //% group="Tools"
     //% color=#ff9933
     //% block="Send Comment $theComment"
+    //% theComment.shadow=math_number
     //% theComment.defl="Sends comments"
-    export function send_comment(theComment: string): void {
+    export function send_comment(theComment: any): void {
         serial.writeLine("#" + theComment);
         basic.pause(20)
     }
@@ -339,8 +340,9 @@ namespace SerialMaker {
     //% group="Files"
     //% color=#b30086
     //% filename.defl="Data File"
+    //% filename.shadow=math_number
     //% block="File read $filename from line:$line_num"|| icon="\uf080"
-    export function file_read(filename: string, line_num: number): string {
+    export function file_read(filename: any, line_num: number): string {
         serial.writeLine("FILE_READ," + filename + "," + line_num);
         
         const timeout = 1000; // 1 second timeout
@@ -364,13 +366,13 @@ namespace SerialMaker {
     }
 
     /**
-     * writes to a local file (csv, txt)
+     * writes to the bottom of a local file (csv, txt)
      * Saves to 'App directory\Data Logs\<filename>.csv'
      */
     //% group="Files"
     //% color=#b30086
-    //% filename.defl="Data File"
     //% data.defl="Data"
+    //% data.shadow=math_number
     //% block="File write $data to bottom of file:$filename"|| icon="\uf080"
     export function file_add(data: any, filename: string): void {
         serial.writeLine("FILE_WRITE," + filename + "," + "ADD," + data);
@@ -378,15 +380,16 @@ namespace SerialMaker {
     }
 
     /**
-     * writes to a local file (csv, txt)
+     * writes to the selected line of a local file (csv, txt)
      * Saves to 'App directory\Data Logs\<filename>.csv'
      */
     //% group="Files"
     //% color=#b30086
     //% filename.defl="Data File"
     //% data.defl="Data"
+    //% data.shadow=math_number
     //% block="File write $data to file:$filename at line:$line_num"|| icon="\uf080"
-    export function file_add_to_line(data: string, filename: string, line_num: number): void {
+    export function file_add_to_line(data: any, filename: string, line_num: number): void {
         serial.writeLine("FILE_WRITE," + filename + "," + line_num + "," + data);
         basic.pause(20)
     }
@@ -511,6 +514,7 @@ namespace SerialMaker {
     //% group="Overlay"
     //% color=#000000
     //% overlay_text.defl="text"
+    //% overlay_text.shadow=math_number
     //% x_pos.defl=0
     //% y_pos.defl=0
     //% size.defl=30
@@ -518,7 +522,7 @@ namespace SerialMaker {
     //% expandableArgumentMode="enabled"
     //% inlineInputMode=inline
     //% block="Overlay text %overlay_text|| at X:$x_pos Y:$y_pos font size:$size colour:%colour"|| icon="\uf080" color=#ff0f0f
-    export function overlay(overlay_text: string, x_pos?: number, y_pos?: number, size?: number, colour?: Overlay_Colours): void {
+    export function overlay(overlay_text: any, x_pos?: number, y_pos?: number, size?: number, colour?: Overlay_Colours): void {
         let colour_string = "lime"; // Default value
         switch (colour) {
             case Overlay_Colours.crimson:
@@ -705,8 +709,9 @@ namespace SerialMaker {
     //% group="Keyboard"
     //% color=#1a53ff
     //% text_string.defl="Text"
+    //% text_string.shadow=math_number
     //% block="Type Text $text_string"|| icon="\uf080"
-    export function Type_text(text_string: string): void {
+    export function Type_text(text_string: any): void {
         serial.writeLine("TEXT," + text_string);
         basic.pause(20)
     }
