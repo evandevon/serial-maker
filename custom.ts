@@ -341,9 +341,26 @@ namespace SerialMaker {
     //% filename.defl="Data File"
     //% block="File read $filename from line:$line_num"|| icon="\uf080"
     export function file_read(filename: string, line_num: number): string {
-        serial.writeLine("FILE_READ," + filename + "," + "line_num");
-        basic.pause(20)
-        return serial.readUntil("/n");
+        serial.writeLine("FILE_READ," + filename + "," + line_num);
+        
+        const timeout = 1000; // 1 second timeout
+        const interval = 50; // Check every 50ms
+        let elapsedTime = 0;
+
+        while (elapsedTime < timeout) {
+            const data = serial.readUntil("\n");
+            if (data) {
+                return data; // Exit the function after processing the data
+            }
+            
+            basic.showString("X")
+
+            basic.pause(interval);
+            elapsedTime += interval;
+        }
+        basic.showString("error")
+        // If no data received within the timeout period
+        return "Error: No Data";
     }
 
     /**
@@ -355,7 +372,7 @@ namespace SerialMaker {
     //% filename.defl="Data File"
     //% data.defl="Data"
     //% block="File write $data to bottom of file:$filename"|| icon="\uf080"
-    export function file_add(data: string, filename: string): void {
+    export function file_add(data: any, filename: string): void {
         serial.writeLine("FILE_WRITE," + filename + "," + "ADD," + data);
         basic.pause(20)
     }
@@ -1151,7 +1168,7 @@ namespace SerialMaker {
         }
 
         serial.writeLine("DISPLAY," + Display_Grid);
-        basic.pause(50);
+        basic.pause(20);
         return;
     }
 }
