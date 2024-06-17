@@ -340,9 +340,9 @@ namespace SerialMaker {
     //% group="Files"
     //% color=#b30086
     //% filename.defl="Data File"
-    //% filename.shadow=math_number
-    //% block="File read $filename from line:$line_num"|| icon="\uf080"
-    export function file_read(filename: any, line_num: number): string {
+    //%line_num.defl=1
+    //% block="File read Data Logs \\ $filename from line:$line_num"|| icon="\uf080"
+    export function file_read(filename: string, line_num: number): string {
         serial.writeLine("FILE_READ," + filename + "," + line_num);
         
         const timeout = 1000; // 1 second timeout
@@ -350,19 +350,21 @@ namespace SerialMaker {
         let elapsedTime = 0;
 
         while (elapsedTime < timeout) {
+            //serial.writeLine("#" + interval)
             const data = serial.readUntil("\n");
-            if (data) {
-                return data; // Exit the function after processing the data
+            if (data === "") {
+                // If data is an empty string, it means only a "\n" was received to trigger the 'readUntil' delimeter
+                return ""; // Return a specific message for empty lines
+            } else if (data.length > 0) {
+                // If data has content, return it
+                return data;
             }
             
-            basic.showString("X")
-
             basic.pause(interval);
             elapsedTime += interval;
         }
-        basic.showString("error")
         // If no data received within the timeout period
-        return "Error: No Data";
+        return "Error:Timeout";
     }
 
     /**
@@ -372,9 +374,11 @@ namespace SerialMaker {
     //% group="Files"
     //% color=#b30086
     //% filename.defl="Data File"
+    //% filename.shadow=math_number
     //% data.defl="Data"
+    //% data.shadow=math_number
     //% block="File write $data to bottom of file:$filename"|| icon="\uf080"
-    export function file_add(data: string, filename: string): void {
+    export function file_add(data: any, filename: any): void {
         serial.writeLine("FILE_WRITE," + filename + "," + "ADD," + data);
         basic.pause(20)
     }
@@ -386,10 +390,11 @@ namespace SerialMaker {
     //% group="Files"
     //% color=#b30086
     //% filename.defl="Data File"
+    //% filename.shadow=math_number
     //% data.defl="Data"
     //% data.shadow=math_number
     //% block="File write $data to file:$filename at line:$line_num"|| icon="\uf080"
-    export function file_add_to_line(data: any, filename: string, line_num: number): void {
+    export function file_add_to_line(data: any, filename: any, line_num: number): void {
         serial.writeLine("FILE_WRITE," + filename + "," + line_num + "," + data);
         basic.pause(20)
     }
@@ -400,8 +405,9 @@ namespace SerialMaker {
     //% group="Files"
     //% color=#b30086
     //% filename.defl="Data File"
+    //% filename.shadow=math_number
     //% block="Empty the file:$filename"
-    export function file_empty(filename: string): void {
+    export function file_empty(filename: any): void {
         serial.writeLine("FILE_WRITE," + filename + ",NEW" );
         basic.pause(20)
     }
@@ -414,8 +420,9 @@ namespace SerialMaker {
     //% group="Sound"
     //% color=#88cc00
     //% filename_string.defl="filename"
+    //% filename_string.shadow=math_number
     //% block="Play sound $filename_string"|| icon="\uf080"
-    export function play_sound(filename_string: string): void {
+    export function play_sound(filename_string: any): void {
         serial.writeLine("SOUND," + filename_string);
         basic.pause(20)
     }
@@ -468,7 +475,8 @@ namespace SerialMaker {
     //% color=#88cc00
     //% block="Text to Speech $theText"
     //% theText.defl="text to speech"
-    export function text_to_speech(theText: string): void {
+    //% theText.shadow=math_number
+    export function text_to_speech(theText: any): void {
         serial.writeLine("SAY," + theText);
         basic.pause(20)
     }

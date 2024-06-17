@@ -1,7 +1,9 @@
 input.onButtonPressed(Button.A, function () {
-    SerialMaker.overlay("test")
-    basic.pause(100)
+    basic.showString("")
 })
-basic.forever(function () {
+input.onButtonPressed(Button.AB, function () {
+    basic.clearScreen()
+})
+input.onButtonPressed(Button.B, function () {
 	
 })
