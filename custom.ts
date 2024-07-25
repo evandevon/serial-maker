@@ -273,9 +273,30 @@ enum Graph_Types {
 /**
  * Custom blocks
  */
-//% groups="['Mouse Position', 'Mouse Movement', 'Mouse Buttons', 'Keyboard' , 'Graphs', 'Sound', 'Overlay', 'Requests', 'Files', 'Tools' ]"
+//% groups="['Mouse Position', 'Mouse Movement', 'Mouse Buttons', 'Keyboard' , 'Graphs', 'Sound', 'Overlay', 'Date and Time', 'Files', 'Tools' ]"
 
 namespace SerialMaker {
+
+    //This locks or releases access to serial messaging, so that messages don't get garbled/mixed up
+    //Leaving this here if needed at a later date after testing
+    let isSerialBusy = false;
+
+    function acquireLock() {
+        while (isSerialBusy) {
+            basic.pause(10); // Wait for the lock to be released
+        }
+        isSerialBusy = true;
+    }
+
+    //Example usage
+    //acquireLock();
+    //The serial command goes here
+    //basic.pause(20);
+    //releaseLock();
+
+    function releaseLock() {
+        isSerialBusy = false;
+    }
 
     /**
     * custom block that contains no code but
@@ -296,10 +317,12 @@ namespace SerialMaker {
     //% group="Tools"
     //% color=#ff9933
     //% block="Send Comment $theComment"
-    //% theComment.shadow=math_number
     //% theComment.defl="Sends comments"
-    export function send_comment(theComment: any): void {
+    export function send_comment(theComment: string): void {
+
+        
         serial.writeLine("#" + theComment);
+
         basic.pause(20)
     }
 
@@ -312,6 +335,160 @@ namespace SerialMaker {
     export function clear_log(): void {
         serial.writeLine("CLEAR_LOG");
         basic.pause(20)
+    }
+
+    /**
+     * Inserts the string "<USERNAME>" into a serial command, for SerialMaker to translate to the currently logged in username
+     */
+    //% block="Insert <USERNAME> into command" 
+    //% group="Tools"
+    //% color=#ff9933
+    export function UsernamePlaceholder(): string {
+        return "<USERNAME>";
+    }
+
+    /**
+     * Inserts the string "<TIME>" into a serial command, for SerialMaker to translate quickly
+     */
+    //% block="Insert <TIME> into command" 
+    //% group="Date and Time"
+    //% color=#aa80ff
+    export function insertCurrentTimePlaceholder(): string {
+        return "<TIME>";
+    }
+
+    /**
+    * Inserts the string "<DATE>" into a serial command, for SerialMaker to translate quickly
+    */
+    //% block="Insert <DATE> into command" 
+    //% group="Date and Time"
+    //% color=#aa80ff
+    export function insertCurrentDatePlaceholder(): string {
+        return "<DATE>";
+    }
+
+    /**
+    * Requests the current date Day/Month/Year format
+    */
+    //% group="Date and Time"
+    //% color=#aa80ff
+    //% block="Request date"|| icon="\uf080"
+    export function request_date(): string {
+        serial.writeLine("(REQUEST_DATE)");
+
+        const timeout = 3000; // 1 second timeout
+        const interval = 50; // Check every 50ms
+        let elapsedTime = 0;
+        let data = "";
+
+        while (elapsedTime < timeout) {
+            // Read all available characters from the serial buffer
+            data += serial.readString();
+
+            // Check if the data ends with a newline character
+            if (data.includes("\n")) {
+                // Trim the newline character
+                data = data.trim();
+
+                // Check if the data is longer than 10 characters
+                if (data.length > 10) {
+                    return "Error: Data too long";
+                }
+
+                // Return the result if it's within the valid length
+                return data;
+            }
+
+            // Pause for the specified interval
+            basic.pause(interval);
+            elapsedTime += interval;
+        }
+
+        // If no data received within the timeout period, return an error message
+        return "Error: Timeout";
+    }
+
+
+    /**
+    * Requests the current time in Hour:Minute:Second:Centisecond format
+    */
+    //% group="Date and Time"
+    //% color=#aa80ff
+    //% block="Request H:M:S:CS time"|| icon="\uf080"
+    export function request_detailed_time(): string {
+        serial.writeLine("(REQUEST_DETAILED_TIME)");
+
+        const timeout = 3000; // 1 second timeout
+        const interval = 50; // Check every 50ms
+        let elapsedTime = 0;
+        let data = "";
+
+        while (elapsedTime < timeout) {
+            // Read all available characters from the serial buffer
+            data += serial.readString();
+
+            // Check if the data ends with a newline character
+            if (data.includes("\n")) {
+                // Trim the newline character
+                data = data.trim();
+
+                // Check if the data is longer than 10 characters
+                if (data.length > 12) {
+                    return "Error: Data too long";
+                }
+
+                // Return the result if it's within the valid length
+                return data;
+            }
+
+            // Pause for the specified interval
+            basic.pause(interval);
+            elapsedTime += interval;
+        }
+
+        // If no data received within the timeout period, return an error message
+        return "Error: Timeout";
+    }
+
+    /**
+    * Requests the current time in Hour:Minute:Second format
+    */
+    //% group="Date and Time"
+    //% color=#aa80ff
+    //% block="Request H:M:S time"|| icon="\uf080"
+    export function request_time(): string {
+        serial.writeLine("(REQUEST_TIME)");
+
+        const timeout = 3000; // 1 second timeout
+        const interval = 50; // Check every 50ms
+        let elapsedTime = 0;
+        let data = "";
+
+        while (elapsedTime < timeout) {
+            // Read all available characters from the serial buffer
+            data += serial.readString();
+
+            // Check if the data ends with a newline character
+            if (data.includes("\n")) {
+                // Trim the newline character
+                data = data.trim();
+
+                // Check if the data is longer than 10 characters
+                if (data.length > 12) {
+                    return "Error: Data too long";
+                }
+
+                // Return the result if it's within the valid length
+                return data;
+            }
+
+            // Pause for the specified interval
+            basic.pause(interval);
+            elapsedTime += interval;
+        }
+
+        // If no data received within the timeout period, return an error message
+        return "Error: Timeout";
     }
 
     /**
@@ -339,30 +516,39 @@ namespace SerialMaker {
     */
     //% group="Files"
     //% color=#b30086
-    //% filename.defl="Data File"
+    //% filename.defl="Data File.txt"
     //%line_num.defl=1
-    //% block="File read Data Logs \\ $filename from line:$line_num"|| icon="\uf080"
+    //% block="File read from Data Logs $filename from line:$line_num"|| icon="\uf080"
     export function file_read(filename: string, line_num: number): string {
         serial.writeLine("FILE_READ," + filename + "," + line_num);
         
-        const timeout = 1000; // 1 second timeout
+        const timeout = 3000; // 1 second timeout
         const interval = 50; // Check every 50ms
         let elapsedTime = 0;
+        let data = "";
 
         while (elapsedTime < timeout) {
-            //serial.writeLine("#" + interval)
-            const data = serial.readUntil("\n");
-            if (data === "") {
-                // If data is an empty string, it means only a "\n" was received to trigger the 'readUntil' delimeter
-                return ""; // Return a specific message for empty lines
-            } else if (data.length > 0) {
-                // If data has content, return it
+            // Read all available characters from the serial buffer
+            data += serial.readString();
+
+            // Check if the data ends with a newline character
+            if (data.includes("\n")) {
+                // Trim the newline character
+                data = data.trim();
+
+                // Check if the data hits the mx length
+                if (data.length > 250) {
+                    return data;
+                }
+
+                // Return the result if it's within the valid length
                 return data;
             }
-            
+            // Pause for the specified interval
             basic.pause(interval);
             elapsedTime += interval;
         }
+
         // If no data received within the timeout period
         return "Error:Timeout";
     }
@@ -373,12 +559,10 @@ namespace SerialMaker {
      */
     //% group="Files"
     //% color=#b30086
-    //% filename.defl="Data File"
-    //% filename.shadow=math_number
+    //% filename.defl="Data File.txt"
     //% data.defl="Data"
-    //% data.shadow=math_number
     //% block="File write $data to bottom of file:$filename"|| icon="\uf080"
-    export function file_add(data: any, filename: any): void {
+    export function file_add(data: string, filename: string): void {
         serial.writeLine("FILE_WRITE," + filename + "," + "ADD," + data);
         basic.pause(20)
     }
@@ -389,12 +573,11 @@ namespace SerialMaker {
      */
     //% group="Files"
     //% color=#b30086
-    //% filename.defl="Data File"
-    //% filename.shadow=math_number
+    //% filename.defl="Data File.txt"
     //% data.defl="Data"
-    //% data.shadow=math_number
+    //% line_num.defl=1
     //% block="File write $data to file:$filename at line:$line_num"|| icon="\uf080"
-    export function file_add_to_line(data: any, filename: any, line_num: number): void {
+    export function file_add_to_line(data: string, filename: string, line_num: number): void {
         serial.writeLine("FILE_WRITE," + filename + "," + line_num + "," + data);
         basic.pause(20)
     }
@@ -404,10 +587,9 @@ namespace SerialMaker {
     */
     //% group="Files"
     //% color=#b30086
-    //% filename.defl="Data File"
-    //% filename.shadow=math_number
+    //% filename.defl="Data File.txt"
     //% block="Empty the file:$filename"
-    export function file_empty(filename: any): void {
+    export function file_empty(filename: string): void {
         serial.writeLine("FILE_WRITE," + filename + ",NEW" );
         basic.pause(20)
     }
@@ -651,6 +833,9 @@ namespace SerialMaker {
 
     /**
     * line graph actions
+    * Clear Data = remove all data and auto-sizing information from the graph
+    * Clear Graph = remove the data points, but leave the auto-size information
+    * Close Window = closes the Line Graph window 
     */
     //% group="Graphs"
     //% color=#ff6666
