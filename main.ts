@@ -1,12 +1,5 @@
-
-input.onButtonPressed(Button.A, function () {
-	
-})
 buttonClicks.onButtonDown(buttonClicks.AorB.A, function () {
 	
-})
-input.onButtonPressed(Button.B, function () {
-    SerialMaker.clear_overlay()
 })
 buttonClicks.onButtonHeld(buttonClicks.AorB.A, function () {
 	
