@@ -210,10 +210,12 @@ enum Mouse_Direction {
 
 
 enum TTS_Choices {
-    //% block="Male"
-    Male,
-    //% block="Female"
-    Female
+    //% block="Hazel"
+    Hazel,
+    //% block="David"
+    David,
+    //% block="Zira"
+    Zira
 }
 
 enum Sound_Choices {
@@ -639,11 +641,14 @@ namespace SerialMaker {
     //% block="Text to speech set %choice"|| icon="\uf080"
     export function TTS_Setting(choice: TTS_Choices): void {
         switch (choice) {
-            case TTS_Choices.Male:
-                serial.writeLine("SAY,SET_MALE_VOICE");
+            case TTS_Choices.Hazel:
+                serial.writeLine("SAY,SET_HAZEL_VOICE");
                 break;
-            case TTS_Choices.Female:
-                serial.writeLine("SAY,SET_FEMALE_VOICE");
+            case TTS_Choices.David:
+                serial.writeLine("SAY,SET_DAVID_VOICE");
+                break;
+            case TTS_Choices.Zira:
+                serial.writeLine("SAY,SET_ZIRA_VOICE");
                 break;
 
         }
