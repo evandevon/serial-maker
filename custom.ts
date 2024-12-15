@@ -270,6 +270,8 @@ enum Graph_Types {
     LineGraph,
     //% block="Column Graph"
     ColumnGraph,
+    //% block="Pie Graph"
+    PieGraph,
 }
 
 /**
@@ -653,6 +655,8 @@ namespace SerialMaker {
 
         }
         basic.pause(20)
+
+        
     }
 
     /**
@@ -662,11 +666,12 @@ namespace SerialMaker {
     //% color=#88cc00
     //% block="Text to Speech $theText"
     //% theText.defl="text to speech"
-    //% theText.shadow=math_number
-    export function text_to_speech(theText: any): void {
+    export function text_to_speech(theText: string): void {
         serial.writeLine("SAY," + theText);
         basic.pause(20)
     }
+
+
 
     /**
     * Plays a beep sound for a given frequency and duration. Empty values default to 500 Hz ,500 ms
@@ -776,16 +781,6 @@ namespace SerialMaker {
     }
 
 
-    /**
-    * Closes the pie graph
-    */
-    //% group="Graphs"
-    //% color=#ff6666
-    //% block="Pie Graph Close"
-    export function Pie_Graph_Close(): void {
-        serial.writeLine("PIE_GRAPH,CLOSE");
-        basic.pause(20)
-    }
 
     /**
     * Creates a pie graph
@@ -869,6 +864,9 @@ namespace SerialMaker {
                 break;
             case Graph_Types.ColumnGraph:
                 graphString = "COLUMN_GRAPH";
+                break;
+            case Graph_Types.PieGraph:
+                graphString = "PIE_GRAPH";
                 break;
         }
 
