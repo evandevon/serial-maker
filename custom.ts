@@ -1373,3 +1373,12 @@ namespace SerialMaker {
         return;
     }
 }
+
+/**
+ * Custom blocks
+ */
+//% groups="['Advanced Mouse Position', 'Advanced Mouse Movement', 'Advanced Mouse Buttons', 'Advanced Keyboard' , 'Advanced Graphs', 'Advanced Sound', 'Advanced Overlay', 'Advanced Date and Time', 'Advanced Files', 'Advanced Tools' ]"
+
+namespace SerialMaker_Advanced{
+
+}
