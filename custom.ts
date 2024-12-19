@@ -304,19 +304,18 @@ namespace SerialMaker {
 
     /**
     * custom block that contains no code but
-    * allows users to place a comment 
-    * in the parameter field.
+    * allows users to place a comment directly in their code.
     */
     //% group="Tools"
     //% color=#ff9933
     //% block="In-Code Comment $theComment"
-    //% theComment.defl="This block is just for in-line comments"
+    //% theComment.defl="This block is just for in-code comments"
     export function comment(theComment: string): void {
         // do nothing
     }
 
     /**
-    * sends a comment 
+    * sends a comment to the data log
     */
     //% group="Tools"
     //% color=#ff9933
@@ -369,130 +368,6 @@ namespace SerialMaker {
     //% color=#aa80ff
     export function insertCurrentDatePlaceholder(): string {
         return "<DATE>";
-    }
-
-    /**
-    * Requests the current date Day/Month/Year format
-    */
-    //% group="Date and Time"
-    //% color=#aa80ff
-    //% block="Request date"|| icon="\uf080"
-    export function request_date(): string {
-        serial.writeLine("(REQUEST_DATE)");
-
-        const timeout = 3000; // 1 second timeout
-        const interval = 50; // Check every 50ms
-        let elapsedTime = 0;
-        let data = "";
-
-        while (elapsedTime < timeout) {
-            // Read all available characters from the serial buffer
-            data += serial.readString();
-
-            // Check if the data ends with a newline character
-            if (data.includes("\n")) {
-                // Trim the newline character
-                data = data.trim();
-
-                // Check if the data is longer than 10 characters
-                if (data.length > 10) {
-                    return "Error: Data too long";
-                }
-
-                // Return the result if it's within the valid length
-                return data;
-            }
-
-            // Pause for the specified interval
-            basic.pause(interval);
-            elapsedTime += interval;
-        }
-
-        // If no data received within the timeout period, return an error message
-        return "Error: Timeout";
-    }
-
-
-    /**
-    * Requests the current time in Hour:Minute:Second:Centisecond format
-    */
-    //% group="Date and Time"
-    //% color=#aa80ff
-    //% block="Request H:M:S:CS time"|| icon="\uf080"
-    export function request_detailed_time(): string {
-        serial.writeLine("(REQUEST_DETAILED_TIME)");
-
-        const timeout = 3000; // 1 second timeout
-        const interval = 50; // Check every 50ms
-        let elapsedTime = 0;
-        let data = "";
-
-        while (elapsedTime < timeout) {
-            // Read all available characters from the serial buffer
-            data += serial.readString();
-
-            // Check if the data ends with a newline character
-            if (data.includes("\n")) {
-                // Trim the newline character
-                data = data.trim();
-
-                // Check if the data is longer than 10 characters
-                if (data.length > 12) {
-                    return "Error: Data too long";
-                }
-
-                // Return the result if it's within the valid length
-                return data;
-            }
-
-            // Pause for the specified interval
-            basic.pause(interval);
-            elapsedTime += interval;
-        }
-
-        // If no data received within the timeout period, return an error message
-        return "Error: Timeout";
-    }
-
-    /**
-    * Requests the current time in Hour:Minute:Second format
-    */
-    //% group="Date and Time"
-    //% color=#aa80ff
-    //% block="Request H:M:S time"|| icon="\uf080"
-    export function request_time(): string {
-        serial.writeLine("(REQUEST_TIME)");
-
-        const timeout = 3000; // 1 second timeout
-        const interval = 50; // Check every 50ms
-        let elapsedTime = 0;
-        let data = "";
-
-        while (elapsedTime < timeout) {
-            // Read all available characters from the serial buffer
-            data += serial.readString();
-
-            // Check if the data ends with a newline character
-            if (data.includes("\n")) {
-                // Trim the newline character
-                data = data.trim();
-
-                // Check if the data is longer than 10 characters
-                if (data.length > 12) {
-                    return "Error: Data too long";
-                }
-
-                // Return the result if it's within the valid length
-                return data;
-            }
-
-            // Pause for the specified interval
-            basic.pause(interval);
-            elapsedTime += interval;
-        }
-
-        // If no data received within the timeout period, return an error message
-        return "Error: Timeout";
     }
 
     /**
