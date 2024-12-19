@@ -596,7 +596,7 @@ namespace SerialMaker {
     //% expandableArgumentMode="enabled"
     //% inlineInputMode=inline
     //% block="Overlay text %overlay_text|| at X:$x_pos Y:$y_pos font size:$size colour:%colour"|| icon="\uf080" color=#ff0f0f
-    export function overlay(overlay_text: any, x_pos?: number, y_pos?: number, size?: number, colour?: Overlay_Colours): void {
+    export function overlay(overlay_text: string, x_pos?: number, y_pos?: number, size?: number, colour?: Overlay_Colours): void {
         let colour_string = "lime"; // Default value
         switch (colour) {
             case Overlay_Colours.crimson:
