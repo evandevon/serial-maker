@@ -476,14 +476,13 @@ namespace SerialMaker {
 
  
     /**
-    * plays a local sound file (mp3, wav)
+    * plays a local sound file (mp3, wav) from the 'sounds' folder in the app directory
     */
     //% group="Sound"
     //% color=#88cc00
-    //% filename_string.defl="filename"
-    //% filename_string.shadow=math_number
+    //% filename_string.defl="filename.mp3"
     //% block="Play sound $filename_string"|| icon="\uf080"
-    export function play_sound(filename_string: any): void {
+    export function play_sound(filename_string: string): void {
         serial.writeLine("SOUND," + filename_string);
         basic.pause(20)
     }
