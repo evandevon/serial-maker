@@ -516,11 +516,11 @@ namespace SerialMaker {
 
 
     /**
-    * reads a local file (csv, txt)
+    * reads a local file (csv, txt) from the 'data logs' fold in the app directory
     */
     //% group="Files"
     //% color=#b30086
-    //% filename.defl="Data File.txt"
+    //% filename.defl="File Name.txt"
     //%line_num.defl=1
     //% block="File read from Data Logs $filename from line:$line_num"|| icon="\uf080"
     export function file_read(filename: string, line_num: number): string {
@@ -563,7 +563,7 @@ namespace SerialMaker {
      */
     //% group="Files"
     //% color=#b30086
-    //% filename.defl="Data File.txt"
+    //% filename.defl="File Name.txt"
     //% data.defl="Data"
     //% block="File write $data to bottom of file:$filename"|| icon="\uf080"
     export function file_add(data: string, filename: string): void {
@@ -577,7 +577,7 @@ namespace SerialMaker {
      */
     //% group="Files"
     //% color=#b30086
-    //% filename.defl="Data File.txt"
+    //% filename.defl="File Name.txt"
     //% data.defl="Data"
     //% line_num.defl=1
     //% block="File write $data to file:$filename at line:$line_num"|| icon="\uf080"
@@ -591,7 +591,7 @@ namespace SerialMaker {
     */
     //% group="Files"
     //% color=#b30086
-    //% filename.defl="Data File.txt"
+    //% filename.defl="File Name.txt"
     //% block="Empty the file:$filename"
     export function file_empty(filename: string): void {
         serial.writeLine("FILE_WRITE," + filename + ",NEW" );

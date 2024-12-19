@@ -1,5 +1,6 @@
 input.onButtonPressed(Button.B, function () {
     SerialMaker.line_graph_actions(Graph_Actions.ClearData, Graph_Types.ColumnGraph)
+    SerialMaker.file_add_to_line("", "Data File.txt", 1)
 })
 basic.forever(function () {
     while (input.buttonIsPressed(Button.A)) {
