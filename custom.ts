@@ -588,7 +588,6 @@ namespace SerialMaker {
     //% group="Overlay"
     //% color=#000000
     //% overlay_text.defl="text"
-    //% overlay_text.shadow=math_number
     //% x_pos.defl=0
     //% y_pos.defl=0
     //% size.defl=30
