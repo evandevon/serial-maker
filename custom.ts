@@ -24,32 +24,7 @@ namespace serialmaker {
         Y
     }
 
-    export enum Direction {
-        //% block="up"
-        Up,
-        //% block="down"
-        Down,
-        //% block="left"
-        Left,
-        //% block="right"
-        Right
-    }
-
-    export enum MouseButton {
-        //% block="left"
-        Left,
-        //% block="middle"
-        Middle,
-        //% block="right"
-        Right
-    }
-
-    export enum MousePressAction {
-        //% block="click"
-        Click,
-        //% block="hold"
-        Hold
-    }
+   
 
   
 }
