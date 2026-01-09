@@ -51,35 +51,5 @@ namespace serialmaker {
         Hold
     }
 
-    export enum MouseReleaseTarget {
-        //% block="left"
-        Left,
-        //% block="middle"
-        Middle,
-        //% block="right"
-        Right,
-        //% block="all"
-        All
-    }
-
-    export enum ScrollDirection {
-        //% block="up"
-        Up,
-        //% block="down"
-        Down,
-        //% block="left"
-        Left,
-        //% block="right"
-        Right
-    }
-
-    export enum KeyAction {
-        //% block="tap"
-        Tap,
-        //% block="hold"
-        Hold,
-        //% block="release"
-        Release
-    }
-
+  
 }
