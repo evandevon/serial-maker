@@ -7,7 +7,7 @@
   },
   "files": [
     "custom.ts",
-    "README.md"
+    "README.txt"
   ],
   "supportedTargets": [
     "microbit"
