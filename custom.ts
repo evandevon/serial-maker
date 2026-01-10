@@ -84,105 +84,58 @@ namespace serialmaker {
 
     // Fully expanded special keys
     export enum SpecialKey {
-        // Directional / Navigation
-        //% block="up arrow"
-        Up,
-        //% block="down arrow"
-        Down,
-        //% block="left arrow"
-        Left,
-        //% block="right arrow"
-        Right,
-        //% block="page up"
-        PageUp,
-        //% block="page down"
-        PageDown,
-        //% block="home"
-        Home,
-        //% block="end"
-        End,
-        //% block="tab"
-        Tab,
+    // Navigation
+    Up,
+    Down,
+    Left,
+    Right,
+    PageUp,
+    PageDown,
+    Home,
+    End,
+    Tab,
 
-        // Control keys
-        //% block="escape"
-        Esc,
-        //% block="control"
-        Ctrl,
-        //% block="alt"
-        Alt,
-        //% block="shift"
-        Shift,
-        //% block="windows"
-        Windows,
-        //% block="caps lock"
-        CapsLock,
+    // Control
+    Esc,
+    Ctrl,
+    Alt,
+    Shift,
+    Windows,
+    CapsLock,
 
-        // Function keys
-        //% block="F1"
-        F1,
-        //% block="F2"
-        F2,
-        //% block="F3"
-        F3,
-        //% block="F4"
-        F4,
-        //% block="F5"
-        F5,
-        //% block="F6"
-        F6,
-        //% block="F7"
-        F7,
-        //% block="F8"
-        F8,
-        //% block="F9"
-        F9,
-        //% block="F10"
-        F10,
-        //% block="F11"
-        F11,
-        //% block="F12"
-        F12,
-        //% block="print screen"
-        PrintScreen,
+    // Function keys
+    F1, F2, F3, F4, F5, F6,
+    F7, F8, F9, F10, F11, F12,
 
-        // Media keys
-        //% block="volume up"
-        VolumeUp,
-        //% block="volume down"
-        VolumeDown,
-        //% block="mute"
-        VolumeMute,
-        //% block="play/pause"
-        PlayPause,
+    PrintScreen,
 
-        // Typing / Alphanumeric
-        // Letters A-Z
-        //% block="A"
-        A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z,
+    // Media
+    VolumeUp,
+    VolumeDown,
+    VolumeMute,
+    PlayPause,
 
-        // Numbers 0-9
-        //% block="0"
-        Num0, Num1, Num2, Num3, Num4, Num5, Num6, Num7, Num8, Num9,
+    // Letters
+    A, B, C, D, E, F, G, H, I, J,
+    K, L, M, N, O, P, Q, R, S, T,
+    U, V, W, X, Y, Z,
 
-        // Other typing keys
-        //% block="enter"
-        Enter,
-        //% block="space"
-        Space,
-        //% block="delete"
-        Delete,
-        //% block="backspace"
-        Backspace,
+    // Numbers
+    Num0, Num1, Num2, Num3, Num4,
+    Num5, Num6, Num7, Num8, Num9,
 
-        // Combos
-        //% block="copy"
-        Copy,
-        //% block="cut"
-        Cut,
-        //% block="paste"
-        Paste
+    // Other
+    Enter,
+    Space,
+    Delete,
+    Backspace,
+
+    // Combos
+    Copy,
+    Cut,
+    Paste
     }
+
 
     /* -----------------------------
        HELPERS
@@ -219,9 +172,108 @@ namespace serialmaker {
         return "RIGHT"
     }
 
+    
     function keyName(key: SpecialKey): string {
-        return SpecialKey[key].toUpperCase()
-    }
+    switch (key) {
+
+        // Navigation
+        case SpecialKey.Up: return "UP"
+        case SpecialKey.Down: return "DOWN"
+        case SpecialKey.Left: return "LEFT"
+        case SpecialKey.Right: return "RIGHT"
+        case SpecialKey.PageUp: return "PAGE_UP"
+        case SpecialKey.PageDown: return "PAGE_DOWN"
+        case SpecialKey.Home: return "HOME"
+        case SpecialKey.End: return "END"
+        case SpecialKey.Tab: return "TAB"
+
+        // Control
+        case SpecialKey.Esc: return "ESC"
+        case SpecialKey.Ctrl: return "CTRL"
+        case SpecialKey.Alt: return "ALT"
+        case SpecialKey.Shift: return "SHIFT"
+        case SpecialKey.Windows: return "WIN"
+        case SpecialKey.CapsLock: return "CAPS_LOCK"
+
+        // Function keys
+        case SpecialKey.F1: return "F1"
+        case SpecialKey.F2: return "F2"
+        case SpecialKey.F3: return "F3"
+        case SpecialKey.F4: return "F4"
+        case SpecialKey.F5: return "F5"
+        case SpecialKey.F6: return "F6"
+        case SpecialKey.F7: return "F7"
+        case SpecialKey.F8: return "F8"
+        case SpecialKey.F9: return "F9"
+        case SpecialKey.F10: return "F10"
+        case SpecialKey.F11: return "F11"
+        case SpecialKey.F12: return "F12"
+
+        case SpecialKey.PrintScreen: return "PRINT_SCREEN"
+
+        // Media
+        case SpecialKey.VolumeUp: return "VOLUME_UP"
+        case SpecialKey.VolumeDown: return "VOLUME_DOWN"
+        case SpecialKey.VolumeMute: return "VOLUME_MUTE"
+        case SpecialKey.PlayPause: return "PLAY_PAUSE"
+
+        // Letters
+        case SpecialKey.A: return "A"
+        case SpecialKey.B: return "B"
+        case SpecialKey.C: return "C"
+        case SpecialKey.D: return "D"
+        case SpecialKey.E: return "E"
+        case SpecialKey.F: return "F"
+        case SpecialKey.G: return "G"
+        case SpecialKey.H: return "H"
+        case SpecialKey.I: return "I"
+        case SpecialKey.J: return "J"
+        case SpecialKey.K: return "K"
+        case SpecialKey.L: return "L"
+        case SpecialKey.M: return "M"
+        case SpecialKey.N: return "N"
+        case SpecialKey.O: return "O"
+        case SpecialKey.P: return "P"
+        case SpecialKey.Q: return "Q"
+        case SpecialKey.R: return "R"
+        case SpecialKey.S: return "S"
+        case SpecialKey.T: return "T"
+        case SpecialKey.U: return "U"
+        case SpecialKey.V: return "V"
+        case SpecialKey.W: return "W"
+        case SpecialKey.X: return "X"
+        case SpecialKey.Y: return "Y"
+        case SpecialKey.Z: return "Z"
+
+        // Numbers
+        case SpecialKey.Num0: return "0"
+        case SpecialKey.Num1: return "1"
+        case SpecialKey.Num2: return "2"
+        case SpecialKey.Num3: return "3"
+        case SpecialKey.Num4: return "4"
+        case SpecialKey.Num5: return "5"
+        case SpecialKey.Num6: return "6"
+        case SpecialKey.Num7: return "7"
+        case SpecialKey.Num8: return "8"
+        case SpecialKey.Num9: return "9"
+
+        // Other
+        case SpecialKey.Enter: return "ENTER"
+        case SpecialKey.Space: return "SPACE"
+        case SpecialKey.Delete: return "DELETE"
+        case SpecialKey.Backspace: return "BACKSPACE"
+
+        // Combos
+        case SpecialKey.Copy: return "CTRL+C"
+        case SpecialKey.Cut: return "CTRL+X"
+        case SpecialKey.Paste: return "CTRL+V"
+
+        default:
+            return "UNKNOWN"
+            }
+        }
+
+
 
     /* -----------------------------
        TOOLS
@@ -1292,4 +1344,3 @@ namespace serialmaker {
 
 
 }
-
