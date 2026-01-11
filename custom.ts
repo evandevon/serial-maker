@@ -582,7 +582,7 @@ namespace serialmaker {
     /**
      * Play a sound file (.wav or .mp3)
      */
-    //% block="play sound file %filename"
+    //% block="play sound file from \Sounds\ %filename"
     //% group="Sound and Speech"
     export function playSound(filename: string): void {
         sendCommand("SOUND," + filename)
