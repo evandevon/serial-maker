@@ -287,7 +287,7 @@ namespace serialmaker {
 
     //% color=#2db300
     //% group="Tools"
-    //% block="Update Live Display"
+    //% block="Update MBit Display"
     export function SendDisplayOverSerial() {
         let Display_Grid = "";
         let Y_Pos = 0;
@@ -305,7 +305,7 @@ namespace serialmaker {
             }
         }
 
-        serial.writeLine("DISPLAY," + Display_Grid);
+        serial.writeLine("5x5_DISPLAY," + Display_Grid);
         basic.pause(20);
         return;
     }
