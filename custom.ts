@@ -770,7 +770,7 @@ namespace serialmaker {
     /**
      * Write text to a specific line in a file stored on your computer
      */
-    //% block="file write file %filename at line %line text %text"
+    //% block="file write file \Data Logs\%filename at line %line text %text"
     //% line.min=1
     //% group="Local File Actions"
     export function fileWriteLine(
@@ -802,7 +802,7 @@ namespace serialmaker {
     /**
      * Request a specific line from a file stored on your computer
      */
-    //% block="Request data from file %filename line %line"
+    //% block="Request data from file \Data Logs\%filename line %line"
     //% line.min=1
     //% group="Local File Actions"
     export function fileRead(filename: string, line: number): void {
