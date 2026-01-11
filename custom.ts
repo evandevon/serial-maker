@@ -316,6 +316,7 @@ namespace serialmaker {
      */
     //% block="send comment %text"
     //% group="Tools"
+    //% text.defl="Anything Goes here"
     export function comment(text: string): void {
         sendCommand("#" + text)
     }
@@ -490,6 +491,7 @@ namespace serialmaker {
     // Type arbitrary text
     //% block="type text %text"
     //% group="Keyboard"
+    //% text.defl="Anything goes here"
     export function typeText(text: string): void {
         sendCommand("TEXT," + text)
     }
@@ -538,6 +540,7 @@ namespace serialmaker {
      */
     //% block="Text to speech %text"
     //% group="Sound and Speech"
+    //% text.defl="Hello World"
     export function say(text: string): void {
         sendCommand("SAY," + text)
     }
@@ -584,6 +587,7 @@ namespace serialmaker {
      */
     //% block="play sound file from /Sounds/%filename"
     //% group="Sound and Speech"
+    //% filename.defl="Alert 1.wav"
     export function playSound(filename: string): void {
         sendCommand("SOUND," + filename)
     }
@@ -754,6 +758,7 @@ namespace serialmaker {
      */
     //% block="file write to /Data Logs/%filename mode %mode text %text"
     //% group="Local File Actions"
+    //% filename.defl="file.txt"
     export function fileWrite(
         filename: string,
         mode: FileWriteMode,
@@ -773,6 +778,8 @@ namespace serialmaker {
     //% block="file write file /Data Logs/%filename at line %line text %text"
     //% line.min=1
     //% group="Local File Actions"
+    //% filename.defl="file.txt"
+
     export function fileWriteLine(
         filename: string,
         line: number,
@@ -791,6 +798,7 @@ namespace serialmaker {
      */
     //% block="clear file  /Data Logs/%filename"
     //% group="Local File Actions"
+    //% filename.defl="file.txt"
     export function fileClear(filename: string): void {
         sendCommand("FILE_WRITE," + filename + ",NEW")
     }
@@ -805,6 +813,7 @@ namespace serialmaker {
     //% block="Request data from file /Data Logs/%filename line %line"
     //% line.min=1
     //% group="Local File Actions"
+    //% filename.defl="file.txt"
     export function fileRead(filename: string, line: number): void {
         sendCommand(
             "FILE_READ," +
@@ -1103,8 +1112,10 @@ namespace serialmaker {
     /**
      * Create or update a GUI button
      */
-    //% block="GUI button %name x %x y %y width %w height %h text %text"
-    //% group=""Graphical User Interface (GUI)"
+    //% block="GUI button name %name x %x y %y width %w height %h text %text"
+    //% group="Graphical User Interface (GUI)"
+    //% name.defl="Btn1"
+    //% text.defl="This is a button"
     export function guiButton(
         name: string,
         x: number,
@@ -1124,6 +1135,8 @@ namespace serialmaker {
      */
     //% block="GUI input %name x %x y %y font size %size text %text"
     //% group="Graphical User Interface (GUI)"
+    //% name.defl="Input1"
+    //% text.defl="Enter text here"
     export function guiInput(
         name: string,
         x: number,
@@ -1142,6 +1155,8 @@ namespace serialmaker {
      */
     //% block="GUI checkbox %name x %x y %y font size %size state %state text %text"
     //% group="Graphical User Interface (GUI)"
+    //% name.defl="Chk1"
+    //% text.defl="This is a checkbox"
     export function guiCheckbox(
         name: string,
         x: number,
@@ -1161,6 +1176,8 @@ namespace serialmaker {
      */
     //% block="GUI slider %name x %x y %y width %w height %h min %min max %max value %value font colour %colour"
     //% group="Graphical User Interface (GUI)"
+    //% name.defl="Slider1"
+    //% colour.defl="black"
     export function guiSlider(
         name: string,
         x: number,
@@ -1182,6 +1199,7 @@ namespace serialmaker {
      */
     //% block="GUI image name: %name file %file x %x y %y width %w height %h rotation %rot"
     //% group="Graphical User Interface (GUI)"
+    //% name.defl="Img1"
     export function guiImage(
         name: string,
         file: string,
@@ -1201,6 +1219,7 @@ namespace serialmaker {
      */
     //% block="GUI rectangle %name centre x %cx centre y %cy width %w height %h colour %col rotation %rot"
     //% group="Graphical User Interface (GUI)"
+    //% name.defl="Rect1"
     export function guiRectangle(
         name: string,
         cx: number,
@@ -1220,6 +1239,7 @@ namespace serialmaker {
      */
     //% block="GUI circle %name centre x %cx centre y %cy radius %r colour %col"
     //% group="Graphical User Interface (GUI)"
+    //% name.defl="Circ1"
     export function guiCircle(
         name: string,
         cx: number,
@@ -1237,6 +1257,8 @@ namespace serialmaker {
      */
     //% block="GUI text %name x %x y %y text %text size %size font %font colour %col"
     //% group="Graphical User Interface (GUI)"
+    //% name.defl="Txt1"
+    //% text.defl="This is some text"
     export function guiText(
         name: string,
         x: number,
@@ -1256,6 +1278,7 @@ namespace serialmaker {
     */
     //% block="GUI horizontal progress %name x %x y %y width %w height %h value %val max %max bar colour %bar font size %fs font colour %fc text %text"
     //% group="Graphical User Interface (GUI)"
+    //% name.defl="HProgress1"
     export function guiHProgress(
         name: string,
         x: number,
@@ -1279,6 +1302,7 @@ namespace serialmaker {
      */
     //% block="GUI vertical progress %name x %x y %y width %w height %h value %val max %max bar colour %bar font size %fs font colour %fc text %text"
     //% group="Graphical User Interface (GUI)"
+    //% name.defl="VProgress1"
     export function guiVProgress(
         name: string,
         x: number,
@@ -1320,6 +1344,7 @@ namespace serialmaker {
      */
     //% block="GUI delete object with name %name"
     //% group="Graphical User Interface (GUI)"
+    //% name.defl="btn1"
     export function guiClearName(name: string): void {
         sendCommand(`GUI,CLEAR,${name}`)
     }
@@ -1329,6 +1354,9 @@ namespace serialmaker {
      */
     //% block="GUI show window x %x y %y width %w height %h background %bg always on top %top"
     //% group="Graphical User Interface (GUI)"
+    //% bg.defl="white"
+    //% w.defl="200"
+    //% h.defl="200"
     export function guiShow(
         x: number,
         y: number,
