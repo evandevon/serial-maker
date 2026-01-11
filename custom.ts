@@ -752,7 +752,7 @@ namespace serialmaker {
     /**
      * Write text to a file (add or clear)
      */
-    //% block="file write to %filename mode %mode text %text"
+    //% block="file write to \Data Logs\ %filename mode %mode text %text"
     //% group="Local File Actions"
     export function fileWrite(
         filename: string,
@@ -770,7 +770,7 @@ namespace serialmaker {
     /**
      * Write text to a specific line in a file stored on your computer
      */
-    //% block="file write file \Data Logs\%filename at line %line text %text"
+    //% block="file write file \Data Logs\ %filename at line %line text %text"
     //% line.min=1
     //% group="Local File Actions"
     export function fileWriteLine(
@@ -789,7 +789,7 @@ namespace serialmaker {
     /**
      * Clear a file stored on your computer
      */
-    //% block="clear file %filename"
+    //% block="clear file \Data Logs\ %filename"
     //% group="Local File Actions"
     export function fileClear(filename: string): void {
         sendCommand("FILE_WRITE," + filename + ",NEW")
