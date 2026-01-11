@@ -287,7 +287,7 @@ namespace serialmaker {
 
     //% color=#2db300
     //% group="Tools"
-    //% block="Update MBit Display"
+    //% block="Update MBit Live Display"
     export function SendDisplayOverSerial() {
         let Display_Grid = "";
         let Y_Pos = 0;
