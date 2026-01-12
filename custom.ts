@@ -316,7 +316,7 @@ namespace serialmaker {
      */
     //% block="send comment %text"
     //% group="Tools"
-    //% text.defl="Anything Goes here"
+    //% text.defl="This is a comment"
     export function comment(text: string): void {
         sendCommand("#" + text)
     }
@@ -407,7 +407,7 @@ namespace serialmaker {
 
     // Move mouse 10 pixels visually in a direction
     //% block="move mouse %direction by 10 pixels"
-    //% group="Mouse Move"
+    //% group="Mouse Move from current position"
     export function moveMouseDirection(direction: Direction): void {
         sendCommand("MOUSE_MOVE_" + dirChar(direction))
     }
@@ -415,14 +415,14 @@ namespace serialmaker {
     // Move mouse along an axis by value
     //% block="move mouse %axis by %value pixels"
     //% value.min=-100 value.max=100
-    //% group="Mouse Move"
+    //% group="Mouse Move from current position"
     export function moveMouseAxis(axis: Axis, value: number): void {
         sendCommand("MOUSE_MOVE_" + axisChar(axis) + "," + value)
     }
 
     // Move mouse X/Y pixels
     //% block="move mouse X %x Y %y pixels"
-    //% group="Mouse Move"
+    //% group="Mouse Move from current position"
     export function moveMouseXY(x: number, y: number): void {
         sendCommand("MOUSE_MOVE_XY," + x + "," + y)
     }
@@ -431,14 +431,14 @@ namespace serialmaker {
      * Move mouse to absolute X and Y position
      */
     //% block="set mouse position to X %x Y %y"
-    //% group="Mouse Position"
+    //% group="Mouse Position (Screen)"
     export function moveMouseXYAbsolute(x: number, y: number): void {
         sendCommand("MOUSE_POS_XY," + x + "," + y)
     }
 
     // Set mouse absolute position
     //% block="set mouse %axis position to %value pixels"
-    //% group="Mouse Position"
+    //% group="Mouse Position (Screen)"
     export function setMousePosition(axis: Axis, value: number): void {
         sendCommand("MOUSE_POS_" + axisChar(axis) + "," + value)
     }
@@ -446,7 +446,7 @@ namespace serialmaker {
     // Set mouse percent position
     //% block="set mouse %axis position to %value percent"
     //% value.min=0 value.max=100
-    //% group="Mouse Position"
+    //% group="Mouse Position (Screen)"
     export function setMousePositionPercent(axis: Axis, value: number): void {
         sendCommand("MOUSE_POS_%" + axisChar(axis) + "," + value)
     }
@@ -491,7 +491,7 @@ namespace serialmaker {
     // Type arbitrary text
     //% block="type text %text"
     //% group="Keyboard"
-    //% text.defl="Anything goes here"
+    //% text.defl="Some text goes here"
     export function typeText(text: string): void {
         sendCommand("TEXT," + text)
     }
@@ -1154,7 +1154,7 @@ namespace serialmaker {
         //% block="Comic Sans MS"
         ComicSans,
 
-        // Legacy / utility
+        // Utility
         //% block="MS Sans Serif"
         MSSansSerif,
         //% block="Symbol"
@@ -1324,6 +1324,10 @@ namespace serialmaker {
     //% block="GUI circle %name centre x %cx centre y %cy radius %r colour %col"
     //% group="Graphical User Interface (GUI)"
     //% name.defl="Circ1"
+    //% col.defl="blue"
+    //% cx.defl="20"
+    //% cy.defl="20"
+    //% r.defl="20"
     export function guiCircle(
         name: string,
         cx: number,
@@ -1342,9 +1346,9 @@ namespace serialmaker {
     //% block="GUI text name %name x %x y %y text %text size %size font %font colour %col"
     //% group="Graphical User Interface (GUI)"
     //% name.defl="Txt1"
-    //% x.defl=0
-    //% y.defl=50
-    //% size.defl=18
+    //% x.defl="0"
+    //% y.defl="50"
+    //% size.defl="18"
     //% font.defl=GuiFont.SegoeUI
     //% col.defl="black"
     //% text.defl="This is some text"
