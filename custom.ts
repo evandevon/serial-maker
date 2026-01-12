@@ -378,15 +378,15 @@ namespace serialmaker {
 
     function systemRequestToCommand(request: SystemRequest): string {
         switch (request) {
-            case SystemRequest.Time: return "REQUEST_TIME"
-            case SystemRequest.DetailedTime: return "REQUEST_DETAILED_TIME"
-            case SystemRequest.Date: return "REQUEST_DATE"
-            case SystemRequest.Year: return "REQUEST_YEAR"
-            case SystemRequest.Month: return "REQUEST_MONTH"
-            case SystemRequest.Day: return "REQUEST_DAY"
-            case SystemRequest.Hour: return "REQUEST_HOUR"
-            case SystemRequest.Minute: return "REQUEST_MINUTE"
-            case SystemRequest.Second: return "REQUEST_SECOND"
+            case SystemRequest.Time: return "(REQUEST_TIME)"
+            case SystemRequest.DetailedTime: return "(REQUEST_DETAILED_TIME)"
+            case SystemRequest.Date: return "(REQUEST_DATE)"
+            case SystemRequest.Year: return "(REQUEST_YEAR)"
+            case SystemRequest.Month: return "(REQUEST_MONTH)"
+            case SystemRequest.Day: return "(REQUEST_DAY)"
+            case SystemRequest.Hour: return "(REQUEST_HOUR)"
+            case SystemRequest.Minute: return "(REQUEST_MINUTE)"
+            case SystemRequest.Second: return "(REQUEST_SECOND)"
         }
         return "REQUEST_TIME"
     }
