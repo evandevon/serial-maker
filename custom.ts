@@ -476,6 +476,14 @@ namespace serialmaker {
     /* -----------------------------
        KEYBOARD COMMANDS
     ----------------------------- */
+    /**
+     * Release all keys
+     */
+    //% block="release all keyboard keys"
+    //% group="Keyboard"
+    export function keyReleaseAll(): void {
+        sendCommand("KEY_RELEASE,ALL")
+    }
 
     // Single key action
     //% block="keyboard %action %key"
