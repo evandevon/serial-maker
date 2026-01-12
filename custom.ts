@@ -702,8 +702,9 @@ namespace serialmaker {
     /**
      * Simple text overlay (defaults used)
      */
-    //% block="overlay text %text"
+    //% block="Basic overlay text %text"
     //% group="Text Overlay"
+    //% text.defl="Put some text here"
     export function overlayText(text: string): void {
         sendCommand("OVERLAY," + text)
     }
@@ -714,6 +715,7 @@ namespace serialmaker {
     //% block="overlay text %text at X %x Y %y size %size colour %colour"
     //% size.min=1 size.defl=30
     //% group="Text Overlay"
+    //% text.defl="Put some text here"
     export function overlayTextAdvanced(
         text: string,
         x: number,
