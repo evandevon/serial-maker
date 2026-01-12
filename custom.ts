@@ -1301,9 +1301,15 @@ namespace serialmaker {
     /**
      * Create or update a rectangle
      */
-    //% block="GUI rectangle %name centre x %cx centre y %cy width %w height %h colour %col rotation %rot"
+    //% block="GUI rectangle %name centre x %cx centre y %cy width %w height %h colour %col rotation %rot" degrees
     //% group="Graphical User Interface (GUI)"
     //% name.defl="Rect1"
+    //% cx.defl="100"
+    //% cy.defl="100"
+    //% w.defl="50"
+    //% h.defl="50"
+    //% col.defl="green"
+    //% rot.defl="0"
     export function guiRectangle(
         name: string,
         cx: number,
