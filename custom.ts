@@ -1,3 +1,8 @@
+// Call once at extension startup
+serial.setRxBufferSize(256);
+// Call once at extension startup
+serial.setTxBufferSize(256);
+
 //% color="#AA278D" weight=100
 namespace serialmaker {
 
