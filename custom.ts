@@ -1109,6 +1109,90 @@ namespace serialmaker {
     * GUI COMMANDS
     * ------------------------------------------------------------------ */
 
+    export enum GuiFont {
+        // Formal / academic
+        //% block="Times New Roman"
+        TimesNewRoman,
+        //% block="Cambria"
+        Cambria,
+        //% block="Georgia"
+        Georgia,
+        //% block="Palatino Linotype"
+        Palatino,
+
+        // Professional / body text
+        //% block="Segoe UI"
+        SegoeUI,
+        //% block="Calibri"
+        Calibri,
+        //% block="Arial"
+        Arial,
+        //% block="Tahoma"
+        Tahoma,
+        //% block="Verdana"
+        Verdana,
+
+        // Headings / strong presence
+        //% block="Arial Black"
+        ArialBlack,
+        //% block="Impact"
+        Impact,
+
+        // Technical / monospace
+        //% block="Consolas"
+        Consolas,
+        //% block="Courier New"
+        CourierNew,
+        //% block="Lucida Console"
+        LucidaConsole,
+
+        // Informal / friendly
+        //% block="Trebuchet MS"
+        TrebuchetMS,
+        //% block="Segoe Print"
+        SegoePrint,
+        //% block="Comic Sans MS"
+        ComicSans,
+
+        // Legacy / utility
+        //% block="MS Sans Serif"
+        MSSansSerif,
+        //% block="Symbol"
+        Symbol
+    }
+
+    function guiFontToString(font: GuiFont): string {
+    switch (font) {
+        case GuiFont.TimesNewRoman: return "Times New Roman"
+        case GuiFont.Cambria: return "Cambria"
+        case GuiFont.Georgia: return "Georgia"
+        case GuiFont.Palatino: return "Palatino Linotype"
+
+        case GuiFont.SegoeUI: return "Segoe UI"
+        case GuiFont.Calibri: return "Calibri"
+        case GuiFont.Arial: return "Arial"
+        case GuiFont.Tahoma: return "Tahoma"
+        case GuiFont.Verdana: return "Verdana"
+
+        case GuiFont.ArialBlack: return "Arial Black"
+        case GuiFont.Impact: return "Impact"
+
+        case GuiFont.Consolas: return "Consolas"
+        case GuiFont.CourierNew: return "Courier New"
+        case GuiFont.LucidaConsole: return "Lucida Console"
+
+        case GuiFont.TrebuchetMS: return "Trebuchet MS"
+        case GuiFont.SegoePrint: return "Segoe Print"
+        case GuiFont.ComicSans: return "Comic Sans MS"
+
+        case GuiFont.MSSansSerif: return "MS Sans Serif"
+        case GuiFont.Symbol: return "Symbol"
+        }
+    return "Arial"
+    }
+
+
+
     /**
      * Create or update a GUI button
      */
@@ -1255,9 +1339,14 @@ namespace serialmaker {
     /**
      * Create or update text
      */
-    //% block="GUI text %name x %x y %y text %text size %size font %font colour %col"
+    //% block="GUI text name %name x %x y %y text %text size %size font %font colour %col"
     //% group="Graphical User Interface (GUI)"
     //% name.defl="Txt1"
+    //% x.defl=0
+    //% y.defl=50
+    //% size.defl=18
+    //% font.defl=GuiFont.SegoeUI
+    //% col.defl="black"
     //% text.defl="This is some text"
     export function guiText(
         name: string,
@@ -1265,20 +1354,31 @@ namespace serialmaker {
         y: number,
         text: string,
         size: number,
-        font: string,
+        font: GuiFont,
         col: string
     ): void {
         sendCommand(
-            `GUI,TEXT,${name},${x},${y},${text},${size},${font},${col}`
+            `GUI,TEXT,${name},${x},${y},${text},${size},${guiFontToString(font)},${col}`
         )
     }
+
 
     /**
     * Create or update a horizontal progress bar
     */
-    //% block="GUI horizontal progress %name x %x y %y width %w height %h value %val max %max bar colour %bar font size %fs font colour %fc text %text"
+    //% block="GUI horizontal progress name %name x %x y %y width %w height %h progress value %val max %max bar colour %bar font size %fs font colour %fc text %text"
     //% group="Graphical User Interface (GUI)"
     //% name.defl="HProgress1"
+    //% x.defl="0"
+    //% y.defl="200"
+    //% w.defl="200"
+    //% h.defl="50"
+    //% val.defl="50"
+    //% max.defl="100"
+    //% bar.defl="blue"
+    //% fs.defl="18"
+    //% fc.defl="black"
+    //% text.defl="Horizontal Progress"
     export function guiHProgress(
         name: string,
         x: number,
@@ -1300,9 +1400,19 @@ namespace serialmaker {
     /**
      * Create or update a vertical progress bar
      */
-    //% block="GUI vertical progress %name x %x y %y width %w height %h value %val max %max bar colour %bar font size %fs font colour %fc text %text"
+    //% block="GUI vertical progress name %name x %x y %y width %w height %h progress value %val max %max bar colour %bar font size %fs font colour %fc text %text"
     //% group="Graphical User Interface (GUI)"
     //% name.defl="VProgress1"
+    //% x.defl="0"
+    //% y.defl="200"
+    //% w.defl="50"
+    //% h.defl="200"
+    //% val.defl="50"
+    //% max.defl="100"
+    //% bar.defl="blue"
+    //% fs.defl="18"
+    //% fc.defl="black"
+    //% text.defl="Vertical Progress"
     export function guiVProgress(
         name: string,
         x: number,
@@ -1321,13 +1431,16 @@ namespace serialmaker {
         )
     }
     
+
+
     /**
-     * Hide the Serial GUI window
+     * Remove a GUI object by name
      */
-    //% block="GUI hide window"
+    //% block="GUI delete object with name %name"
     //% group="Graphical User Interface (GUI)"
-    export function guiHide(): void {
-        sendCommand(`GUI,HIDE`)
+    //% name.defl="btn1"
+    export function guiClearName(name: string): void {
+        sendCommand(`GUI,CLEAR,${name}`)
     }
 
     /**
@@ -1340,13 +1453,12 @@ namespace serialmaker {
     }
 
     /**
-     * Remove a GUI object by name
+     * Hide the Serial GUI window
      */
-    //% block="GUI delete object with name %name"
+    //% block="GUI hide window"
     //% group="Graphical User Interface (GUI)"
-    //% name.defl="btn1"
-    export function guiClearName(name: string): void {
-        sendCommand(`GUI,CLEAR,${name}`)
+    export function guiHide(): void {
+        sendCommand(`GUI,HIDE`)
     }
 
     /**
