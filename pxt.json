@@ -1,6 +1,6 @@
 {
   "name": "serial-maker",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Serial command generator for PC-side visualisation and control",
   "dependencies": {
     "core": "*"
