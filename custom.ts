@@ -334,7 +334,7 @@ namespace serialmaker {
      * Get the current average of the buffered readings
      */
     //% color=#1E90FF
-    //% block="get average of averaging buffer"
+    //% block="the average of the averaging buffer"
     //% group="Tools"
     export function getAverage(): number {
         if (buffer.length == 0) return 0
