@@ -290,6 +290,61 @@ namespace serialmaker {
         sendCommand(state === HidState.Enable ? "START_HID" : "STOP_HID")
     }
 
+    let buffer: number[] = []
+    let bufferSize = 10         // Default buffer size
+    let bufferInitialized = false
+
+    /**
+     * Set the number of readings to average
+     * @param size number of readings to average, eg: 10
+     */
+    //% color=#1E90FF
+    //% block="set averaging buffer size to %size samples"
+    //% group="Tools"
+    export function setBufferSize(size: number): void {
+        bufferSize = size
+        // Trim buffer if it is too long
+        if (buffer.length > bufferSize) {
+            buffer = buffer.slice(buffer.length - bufferSize)
+        }
+        bufferInitialized = true
+    }
+
+    /**
+     * Add a new sensor reading to the buffer
+     * @param value the new sensor reading
+     */
+    //% color=#1E90FF
+    //% block="add value %value to averaging buffer"
+    //% group="Tools"
+    export function addReading(value: number): void {
+        // If buffer size has never been set, use default
+        if (!bufferInitialized) {
+            bufferSize = 10
+            bufferInitialized = true
+        }
+
+        buffer.push(value)
+        if (buffer.length > bufferSize) {
+            buffer.shift() // remove oldest reading
+        }
+    }
+
+    /**
+     * Get the current average of the buffered readings
+     */
+    //% color=#1E90FF
+    //% block="get average of averaging buffer"
+    //% group="Tools"
+    export function getAverage(): number {
+        if (buffer.length == 0) return 0
+        let sum = 0
+        for (let i = 0; i < buffer.length; i++) {
+            sum += buffer[i]
+        }
+        return sum / buffer.length
+    }
+    
     //% color=#2db300
     //% group="Tools"
     //% block="Update MBit Live Display"
